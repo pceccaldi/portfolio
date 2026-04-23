@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garage du Bocage - Contact</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #efefef;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #c62828;
+    }
+
+    .contact-header {
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("https://images.unsplash.com/photo-1517520287167-4bbf64a00d66?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .contact-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-section {
+      max-width: 1000px;
+      margin: 50px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-top: 5px solid #c62828;
+    }
+
+    .box h2 {
+      margin-bottom: 15px;
+      color: #1a1a1a;
+    }
+
+    .box p {
+      margin-bottom: 12px;
+    }
+
+    .box a {
+      color: #c62828;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .box a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      background: #111;
+      color: #bbb;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .contact-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="contact-header">
+    <h1>Contactez-nous</h1>
+    <p>Garage du Bocage - Souleuvre en Bocage</p>
+  </section>
+
+  <section class="contact-section">
+    <div class="box">
+      <h2>Coordonnées</h2>
+      <p><strong>Adresse :</strong> 12 rue du Centre, 14350 Souleuvre en Bocage</p>
+      <p><strong>Téléphone :</strong> 02 31 00 00 00</p>
+      <p><strong>Email :</strong> <a href="mailto:contact@garagedubocage.fr">contact@garagedubocage.fr</a></p>
+    </div>
+
+    <div class="box">
+      <h2>Horaires</h2>
+      <p><strong>Lundi au vendredi :</strong> 8h00 - 18h00</p>
+      <p><strong>Samedi :</strong> 9h00 - 12h00</p>
+      <p><strong>Dimanche :</strong> Fermé</p>
+    </div>
+
+    <div class="box">
+      <h2>Informations</h2>
+      <p>
+        Pour toute demande d’entretien, de réparation ou de diagnostic,
+        vous pouvez nous contacter par téléphone ou par email.
+      </p>
+      <p>
+        Nous répondons dans les meilleurs délais selon les disponibilités de l’atelier.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Garage du Bocage</p>
+  </footer>
+
+</body>
+</html>

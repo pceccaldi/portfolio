@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pourquoi me recruter ? - Ceccaldi Pierre-François</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 15, 32, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(rgba(8, 15, 32, 0.75), rgba(8, 15, 32, 0.9)),
+    url("photo/fond.jpg");
+  background-size: cover;
+  background-position: center;
+    }
+
+    .hero-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 70px 20px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,0.35);
+      background: rgba(59,130,246,0.08);
+      color: #93c5fd;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.35rem;
+      line-height: 1.08;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: #cbd5e1;
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #e5e7eb;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-note {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(30,41,59,0.92), rgba(15,23,42,0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-item strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .info-item span {
+      color: #cbd5e1;
+      font-size: 0.94rem;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: #94a3b8;
+    }
+
+    .about-grid,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .panel h3 {
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .panel p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    .strengths {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .strength-card {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      transition: 0.3s;
+    }
+
+    .strength-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(96,165,250,0.35);
+    }
+
+    .strength-card h3 {
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 1.02rem;
+    }
+
+    .strength-card p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .skill-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #cbd5e1;
+    }
+
+    .projects-box {
+      display: grid;
+      gap: 18px;
+    }
+
+    .project-mini {
+      padding: 20px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .project-mini h3 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .project-mini p {
+      color: #94a3b8;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    .project-mini a {
+      color: #60a5fa;
+      font-weight: 600;
+    }
+
+    .project-mini a:hover {
+      color: #93c5fd;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(14,165,233,0.12));
+      border: 1px solid rgba(96,165,250,0.18);
+      border-radius: 20px;
+      padding: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cta h2 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1.8rem;
+    }
+
+    .cta p {
+      color: #cbd5e1;
+      max-width: 700px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-container,
+      .about-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .strengths {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+.hero-note {
+  margin-top: 15px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+    @media (max-width: 640px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .strengths {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 65px 20px;
+      }
+
+      .cta {
+        padding: 28px 22px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Ceccaldi Pierre-François</div>
+
+      <div class="nav-links">
+        <a href="#profil">Profil</a>
+        <a href="#atouts">Atouts</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div>
+        <div class="hero-badge">Candidature • Création de site • Webmarketing • Projet digital</div>
+
+        <h1>
+          Un profil <span>technique</span> qui évolue vers la création de sites et le digital
+        </h1>
+
+       <p>
+  Issu de la maintenance, je m’oriente aujourd’hui vers un environnement mêlant conception de site,
+  outils web, communication digitale et logique de projet.
+</p>
+
+<p class="hero-note">
+  En quelques mots : Rigueur • organisation • curiosité • progression concrète
+</p>
+
+<div class="hero-actions">
+  <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+  <a href="#contact" class="btn btn-secondary">Me contacter</a>
+</div>
+      </div>
+
+      <div class="hero-card">
+        <h2>En bref</h2>
+
+        <div class="info-list">
+          <div class="info-item">
+            <strong>Profil</strong>
+            <span>Technicien de maintenance en reconversion vers la création de sites et le digital</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Base déjà engagée</strong>
+            <span>HTML, CSS, WordPress, pages web, premiers projets concrets et présentation de contenu</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Qualités utiles</strong>
+            <span>Rigueur, sens de l’organisation, logique technique et envie d’apprendre</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Objectif</strong>
+            <span>Développer un profil polyvalent autour de la conception de site et de l’environnement digital</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="profil">
+    <div class="section-header">
+      <h2>Pourquoi cette orientation me correspond</h2>
+      <p>
+        Le digital m’intéresse pour son côté concret, structuré et évolutif. Je me retrouve
+        dans une approche qui combine création de site, logique de projet, outils numériques
+        et compréhension globale de l’environnement web.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="panel">
+        <h3>Ce que mon parcours m’a déjà apporté</h3>
+        <p>
+          La maintenance m’a appris à analyser, diagnostiquer, intervenir avec méthode
+          et travailler de façon rigoureuse dans un cadre concret.
+        </p>
+        <p>
+          J’y ai développé des qualités utiles pour le web : autonomie, sens pratique,
+          logique de résolution de problème et sérieux dans l’exécution.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Ce que je veux développer maintenant</h3>
+        <p>
+          Je souhaite consolider des compétences en création de pages web, structuration
+          de contenu, outils numériques, logique de projet et compréhension de l’univers digital.
+        </p>
+        <p>
+          Mon objectif est d’évoluer vers un profil capable de créer, organiser et valoriser
+          des supports web de manière cohérente et utile.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="atouts">
+    <div class="section-header">
+      <h2>Ce que je peux déjà apporter</h2>
+      <p>
+        Même en phase de reconversion, je peux déjà apporter une manière de travailler utile
+        dans un cadre professionnel ou de formation.
+      </p>
+    </div>
+
+    <div class="strengths">
+      <div class="strength-card">
+        <h3>Rigueur</h3>
+        <p>Je travaille avec méthode et je cherche à produire quelque chose de clair, propre et cohérent.</p>
+      </div>
+
+      <div class="strength-card">
+        <h3>Organisation</h3>
+        <p>J’avance étape par étape, avec une logique structurée et des objectifs concrets.</p>
+      </div>
+
+      <div class="strength-card">
+        <h3>Curiosité</h3>
+        <p>Je suis dans une vraie démarche d’apprentissage autour du web, des outils numériques et du digital.</p>
+      </div>
+
+      <div class="strength-card">
+        <h3>Logique technique</h3>
+        <p>Mon parcours me permet d’aborder les problèmes avec analyse, cohérence et sens pratique.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="competences">
+    <div class="section-header">
+      <h2>Compétences travaillées et axes de progression</h2>
+      <p>
+        Je construis actuellement une base pratique qui a vocation à évoluer vers un profil
+        plus complet dans la conception de site et l’environnement digital.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="panel">
+        <h3>Base déjà engagée</h3>
+        <div class="skill-list">
+          <div class="skill-item">HTML / CSS</div>
+          <div class="skill-item">Création de pages web</div>
+          <div class="skill-item">Navigation multi-pages</div>
+          <div class="skill-item">WordPress</div>
+          <div class="skill-item">Présentation de projets</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Compétences que je souhaite approfondir</h3>
+        <div class="skill-list">
+          <div class="skill-item">Conception de site plus complète</div>
+          <div class="skill-item">Structuration de contenu web</div>
+          <div class="skill-item">Communication digitale</div>
+          <div class="skill-item">Webmarketing</div>
+          <div class="skill-item">Gestion de projet digital</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projets">
+    <div class="section-header">
+      <h2>Premiers projets concrets</h2>
+      <p>
+        Je développe actuellement un portfolio et plusieurs réalisations simples pour transformer
+        ma progression en résultats visibles.
+      </p>
+    </div>
+
+    <div class="projects-box">
+      <div class="project-mini">
+        <h3>Site vitrine – Garage du Bocage</h3>
+        <p>
+          Projet HTML/CSS réalisé pour travailler la structure d’un site, la cohérence visuelle,
+          la navigation entre pages et la présentation d’un service professionnel.
+        </p>
+        <a href="../projet-garage/index.html" target="_blank" >Voir ce projet dans mon portfolio</a>
+      </div>
+
+      <div class="project-mini">
+        <h3>Page de présentation – Parcours et orientation</h3>
+        <p>
+          Page conçue pour présenter mon profil, mon parcours technique, ma reconversion
+          et mon orientation vers la création de sites et l’environnement digital.
+        </p>
+        <a href="#contact">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="cta">
+      <div>
+        <h2>Je cherche une vraie opportunité pour progresser</h2>
+        <p>
+          Je recherche une formation ou une opportunité professionnalisante pour continuer à développer
+          des compétences concrètes en conception de site, environnement web et culture digitale,
+          dans un cadre sérieux, structuré et évolutif.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
+          Me contacter par email
+        </a>
+        <a href="https://www.linkedin.com/in/pierre-fran%C3%A7ois-ceccaldi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Voir mon LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Ceccaldi Pierre-François - Page de présentation</p>
+  </footer>
+
+</body>
+</html>

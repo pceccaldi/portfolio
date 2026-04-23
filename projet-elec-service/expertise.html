@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bocage Élec Service - Domaines d’intervention</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    nav {
+      background: #111827;
+      padding: 18px 28px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+.logo img {
+  height: 45px;
+}
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f59e0b;
+    }
+
+.top-banner {
+  min-height: 80vh; /* même taille que le hero */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+    url("images/domaine.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* CONTENEUR INTERNE (très important) */
+.banner-content {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* TITRE */
+.top-banner h1 {
+  font-size: 2.7rem;
+  margin-bottom: 15px;
+}
+
+/* TEXTE */
+.top-banner p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #e5e7eb;
+}
+
+    .section {
+      max-width: 1150px;
+      margin: 70px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #111827;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #4b5563;
+    }
+
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+    }
+
+    .case-card {
+      background: white;
+      border-radius: 14px;
+      padding: 26px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-top: 5px solid #f59e0b;
+      transition: 0.3s;
+    }
+
+    .case-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .case-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .case-card p {
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+
+    .case-card strong {
+      color: #111827;
+    }
+
+    .info-block {
+      background: white;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin-top: 40px;
+    }
+
+    .info-block h2 {
+      margin-bottom: 14px;
+      color: #111827;
+    }
+
+    .info-block p {
+      color: #4b5563;
+      margin-bottom: 12px;
+    }
+
+    .cta-box {
+      background: #111827;
+      color: white;
+      border-radius: 16px;
+      padding: 34px;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .cta-box h2 {
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+
+    .cta-box p {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      color: #d1d5db;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+      background: #f59e0b;
+      color: #111827;
+    }
+
+    .btn:hover {
+      background: #d97706;
+    }
+
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      text-align: center;
+      padding: 24px;
+      margin-top: 70px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .top-banner h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+<a href="index.html" class="logo">
+    <img src="images/logo.jpg" alt="Bocage Elec Service">
+  </a>
+
+    <a href="index.html">Accueil</a>
+    <a href="expertise.html">Expertise</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contactez nous</a>
+  </nav>
+
+<section class="top-banner">
+  <div class="banner-content">
+    <h1>Domaines d’intervention</h1>
+    <p>
+      Bocage Élec Service accompagne les besoins courants en électricité générale,
+      en rénovation, en sécurisation et en dépannage, avec une approche locale et concrète.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Dans quels cas faire appel à Bocage Élec Service ?</h2>
+    <p class="section-intro">
+      Cette page permet de mieux comprendre les situations dans lesquelles une intervention
+      peut être utile, que ce soit pour la sécurité, le confort ou l’évolution d’une installation.
+    </p>
+
+    <div class="cases-grid">
+      <div class="case-card">
+        <h2>Installation ancienne ou peu rassurante</h2>
+        <p>
+          Une installation vieillissante, des prises anciennes ou un tableau peu lisible
+          peuvent justifier une vérification.
+        </p>
+        <p><strong>Objectif :</strong> sécuriser et remettre l’installation dans de bonnes conditions d’usage.</p>
+      </div>
+
+      <div class="case-card">
+        <h2>Rénovation d’un logement</h2>
+        <p>
+          Lors de travaux de rénovation, il est souvent nécessaire d’adapter ou de revoir
+          complètement l’installation électrique.
+        </p>
+        <p><strong>Objectif :</strong> repartir sur une base cohérente, fonctionnelle et plus confortable.</p>
+      </div>
+
+      <div class="case-card">
+        <h2>Panne ou dysfonctionnement</h2>
+        <p>
+          Coupures répétées, prises qui ne fonctionnent plus, éclairage instable ou défaut inexpliqué
+          sont des situations qui nécessitent un diagnostic.
+        </p>
+        <p><strong>Objectif :</strong> identifier l’origine du problème et intervenir proprement.</p>
+      </div>
+
+      <div class="case-card">
+        <h2>Besoin de prises ou d’éclairage en plus</h2>
+        <p>
+          Une pièce qui manque de prises, un éclairage mal placé ou un besoin d’aménagement
+          peuvent justifier des petits travaux ciblés.
+        </p>
+        <p><strong>Objectif :</strong> améliorer le confort quotidien et l’usage du logement.</p>
+      </div>
+
+      <div class="case-card">
+        <h2>Mise en sécurité</h2>
+        <p>
+          Dans certains logements, une remise à niveau partielle peut déjà permettre
+          d’améliorer nettement la sécurité.
+        </p>
+        <p><strong>Objectif :</strong> corriger les points les plus sensibles sans forcément refaire toute l’installation.</p>
+      </div>
+
+      <div class="case-card">
+        <h2>Projet simple mais besoin d’un avis</h2>
+        <p>
+          Avant des travaux ou pour une question sur une installation existante,
+          un échange permet souvent de clarifier la situation.
+        </p>
+        <p><strong>Objectif :</strong> obtenir un avis clair et une orientation adaptée au besoin réel.</p>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h2>Une approche simple et locale</h2>
+      <p>
+        Bocage Élec Service intervient avec une logique de proximité, de clarté et de sérieux.
+        L’idée n’est pas de compliquer, mais d’apporter une réponse adaptée, compréhensible
+        et utile selon la situation.
+      </p>
+      <p>
+        Cette page complète les prestations proposées en donnant une lecture plus concrète
+        des besoins auxquels une intervention électrique peut répondre.
+      </p>
+    </div>
+
+    <div class="cta-box">
+      <h2>Vous avez un besoin ou une question ?</h2>
+      <p>
+        Qu’il s’agisse d’un dépannage, d’un projet de rénovation ou d’une simple demande d’information,
+        Bocage Élec Service reste disponible pour échanger sur votre situation.
+      </p>
+      <a href="contact.html" class="btn">Accéder à la page contact</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Bocage Élec Service</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projets - Ceccaldi Pierre-François</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2, 6, 23, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    .page-header {
+      background:
+        linear-gradient(rgba(15,23,42,0.82), rgba(15,23,42,0.92)),
+        url("images-portfolio/fond-ecran.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .page-header-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px 70px;
+    }
+
+    .page-header-content {
+      max-width: 720px;
+      background: rgba(15,23,42,0.45);
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .page-badge {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: #93c5fd;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(96,165,250,0.35);
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      color: #ffffff;
+      text-shadow: 0 6px 25px rgba(0,0,0,0.45);
+    }
+
+    .page-header p {
+      color: #dbe4f0;
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 70px 20px;
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .section-intro {
+      color: #94a3b8;
+      max-width: 760px;
+      margin-bottom: 35px;
+    }
+
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .project {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-image-link {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .project-img {
+      width: 320px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .project-img:hover {
+      transform: scale(1.03);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 24px 24px 24px 0;
+    }
+
+    .project-type {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #93c5fd;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(96,165,250,0.2);
+    }
+
+    .project-content h3 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+
+    .project-meta {
+      color: #94a3b8;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .back-home {
+      margin-top: 30px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      color: #64748b;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    @media (max-width: 900px) {
+      .page-header h1 {
+        font-size: 2.4rem;
+      }
+
+      .project {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .project-content {
+        padding: 0 20px 20px;
+      }
+
+      .project-img {
+        width: 100%;
+        height: 220px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .page-header-container {
+        padding: 65px 20px 55px;
+      }
+
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .section {
+        padding: 55px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Ceccaldi Pierre-François</div>
+
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="projets.html">Projets</a>
+        <a href="index.html#apropos">À propos</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header-container">
+      <div class="page-header-content">
+        <div class="page-badge">Portfolio • Projets réalisés</div>
+        <h1>Des projets concrets pour construire ma progression</h1>
+        <p>
+          Voici les premières réalisations que j’ai développées pour travailler la création de sites,
+          la structuration de contenu, la cohérence visuelle et la présentation de projets web.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Mes projets</h2>
+    <p class="section-intro">
+      Mon objectif n’est pas seulement d’apprendre la théorie, mais de produire des projets visibles,
+      compréhensibles et cohérents avec une progression vers les métiers du web et du digital.
+    </p>
+
+    <div class="projects-list">
+
+      <article class="project">
+        <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+          <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
+        </a>
+
+        <div class="project-content">
+          <div class="project-type">Site vitrine</div>
+          <h3>Bocage Élec Service</h3>
+          <p>
+    Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale.
+    L’objectif était de concevoir un site clair, structuré et cohérent, capable
+    de présenter les services proposés et de faciliter la prise de contact.
+  </p>
+
+  <p>
+    Le projet s’articule autour de plusieurs pages (accueil, services, domaines
+    d’intervention et contact), avec une attention particulière portée à la
+    lisibilité, à la navigation et à la cohérence visuelle.
+  </p>
+
+  <p>
+    Un formulaire de contact ainsi que des sections orientées “besoins clients”
+    ont été intégrés afin de rendre le site plus réaliste et proche des attentes
+    d’un artisan.
+  </p>
+
+  <p><strong>Compétences mobilisées :</strong></p>
+  <ul>
+    <li>Structuration HTML</li>
+    <li>Mise en page et design en CSS</li>
+    <li>Création de navigation multi-pages</li>
+    <li>Conception orientée utilisateur</li>
+  </ul>
+
+  <p><strong>Technologies :</strong> HTML, CSS</p>
+
+          <div class="project-actions">
+            <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Voir le projet
+  </a>
+</div>
+      </article>
+
+      <article class="project">
+        <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+          <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
+        </a>
+
+        <div class="project-content">
+          <div class="project-type">Site vitrine</div>
+          <h3>Garage du Bocage</h3>
+          <p>
+            Création d’un site vitrine fictif pour un garage automobile afin de travailler la structure HTML,
+            le CSS, la navigation entre plusieurs pages et une identité visuelle cohérente avec un secteur.
+          </p>
+          <div class="project-meta">
+            <strong>Outils :</strong> HTML, CSS
+          </div>
+
+          <div class="project-actions">
+            <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Voir le projet
+            </a>
+          </div>
+        </div>
+      </article>
+
+
+      <article class="project">
+        <a href="projet-candidature/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+          <img src="images-portfolio/landing-page.jpg" alt="Page de présentation" class="project-img">
+        </a>
+
+        <div class="project-content">
+          <div class="project-type">Page de présentation</div>
+          <h3>Présentation de profil</h3>
+          <p>
+            Réalisation d’une page de présentation pour structurer mon profil, mon parcours technique
+            et mon orientation vers la création de sites et l’environnement digital.
+          </p>
+          <div class="project-meta">
+            <strong>Outils :</strong> HTML, CSS
+          </div>
+
+          <div class="project-actions">
+            <a href="projet-candidature/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Voir le projet
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="back-home">
+      <a href="index.html" class="btn btn-secondary">Retour à l’accueil</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Ceccaldi Pierre-François - Portfolio</p>
+  </footer>
+
+</body>
+</html>
