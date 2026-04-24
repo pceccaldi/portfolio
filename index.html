@@ -75,7 +75,7 @@
       align-items: center;
       background:
         linear-gradient(rgba(8, 15, 32, 0.75), rgba(8, 15, 32, 0.92)),
-        url("photo/fond.jpg");
+        url("images-portfolio/fond-ecran.jpg");
       background-size: cover;
       background-position: center;
     }
@@ -86,7 +86,7 @@
       padding: 70px 20px;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
-      gap: 40px;
+      gap: 60px;
       align-items: center;
     }
 
@@ -246,34 +246,53 @@
       margin-bottom: 12px;
     }
 
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-    }
+    /* BARRE DÉMARCHE */
+.demarche-bar {
+  background: #111827; /* même fond que ton site */
+  padding: 40px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
 
-    .card {
-      background: #111827;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 24px;
-      transition: 0.3s;
-    }
+.demarche-container {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(96,165,250,0.35);
-    }
+.step {
+  color: #e5e7eb;
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+}
 
-    .card h3 {
-      color: #ffffff;
-      margin-bottom: 10px;
-      font-size: 1.02rem;
-    }
+.step strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: #60a5fa;
+}
 
-    .card p {
-      color: #94a3b8;
-      font-size: 0.95rem;
+.step span {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #60a5fa;
+  opacity: 0.6;
+}
     }
 
     .skill-list {
@@ -299,6 +318,7 @@
       border-radius: 16px;
       overflow: hidden;
       transition: 0.3s;
+      margin-bottom: 30px;
     }
 
     .project:hover {
@@ -350,6 +370,12 @@
       max-width: 700px;
     }
 
+    .project-content ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
     .project-meta {
       color: #94a3b8;
       margin-bottom: 18px;
@@ -360,12 +386,7 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-    }
-    .learned {
-      border-left: 3px solid #2563eb;
-      padding-left: 12px;
-      margin-top: 12px;
-      color: #cbd5e1 !important;
+      margin-top: 16px;
     }
 
     .cta {
@@ -406,12 +427,22 @@
         grid-template-columns: 1fr;
       }
 
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
       .hero h1 {
         font-size: 2.6rem;
+      }
+
+      .project {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .project-img {
+        width: 100%;
+        height: 240px;
+      }
+
+      .project-content {
+        padding: 24px;
       }
     }
 
@@ -429,12 +460,12 @@
         font-size: 2.1rem;
       }
 
-      .cards-grid {
-        grid-template-columns: 1fr;
-      }
-
       .section {
         padding: 65px 20px;
+      }
+
+      .step:not(:last-child)::after {
+        display: none;
       }
 
       .cta {
@@ -553,34 +584,37 @@
     </div>
   </section>
 
-  <section class="section" id="demarche">
-    <div class="section-header">
-      <h2>Ma démarche projet</h2>
-      <p>
-        Mon expérience technique m’a donné une méthode de travail que je cherche aujourd’hui à appliquer
-        aux projets web : comprendre, organiser, coordonner, puis améliorer.
-      </p>
-    </div>
+<section class="section" id="demarche">
+  <div class="section-header">
+    <h2>Ma démarche projet</h2>
+    <p>
+      Mon parcours technique m’a appris à structurer mon travail autour d’étapes simples :
+      comprendre une situation, organiser les actions, coordonner les intervenants et améliorer les résultats.
+      J’applique aujourd’hui cette logique à mes projets web.
+    </p>
+  </div>
+</section>
 
-    <div class="cards-grid">
-      <div class="card">
-        <h3>Analyser</h3>
-        <p>Comprendre le besoin, identifier les contraintes et définir les priorités du projet.</p>
+  <section class="demarche-bar" id="demarche">
+    <div class="demarche-container">
+      <div class="step">
+        <strong>Analyser</strong>
+        <span>Comprendre le besoin</span>
       </div>
 
-      <div class="card">
-        <h3>Organiser</h3>
-        <p>Structurer les étapes, préparer les contenus et suivre une progression claire.</p>
+      <div class="step">
+        <strong>Organiser</strong>
+        <span>Structurer les étapes</span>
       </div>
 
-      <div class="card">
-        <h3>Coordonner</h3>
-        <p>Faire le lien entre les différents profils pour avancer vers un livrable cohérent.</p>
+      <div class="step">
+        <strong>Coordonner</strong>
+        <span>Faire le lien entre acteurs</span>
       </div>
 
-      <div class="card">
-        <h3>Améliorer</h3>
-        <p>Tester, corriger et faire évoluer le projet pour gagner en qualité et en clarté.</p>
+      <div class="step">
+        <strong>Améliorer</strong>
+        <span>Optimiser en continu</span>
       </div>
     </div>
   </section>
@@ -628,111 +662,128 @@
       </p>
     </div>
 
-  <div class="project">
+    <article class="project">
+      <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/ligne-origine.jpg" alt="Projet optimisation ligne de production" class="project-img">
+      </a>
 
-  <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer">
-    <img src="images-portfolio/ligne-origine.jpg" alt="Projet optimisation ligne de production" class="project-img">
-  </a>
+      <div class="project-content">
+        <div class="project-type">Site de présentation</div>
 
+        <h3>Optimisation d’une ligne de production</h3>
 
-  <div class="project-content">
-          <div class="project-type">Site de présentation</div>
-          <p>
-	    <h2>Optimisation d’une ligne de production</h2>
+        <p>
+          Présentation d’un projet basé sur une problématique industrielle :
+          améliorer le taux de fonctionnement d’une ligne de production de flacons
+          en identifiant les causes principales d’arrêts et de pertes de performance.
+        </p>
 
-    <p>
-      Présentation d’un projet tutoré basé sur une problématique industrielle :
-      améliorer le taux de fonctionnement d’une ligne de production de flacons
-      en identifiant les causes principales d’arrêts et de pertes de performance.
-    </p>
+        <p>
+          Le projet met en avant l’analyse du fonctionnement de la ligne, l’identification
+          du goulot d’étranglement, la mise en place d’actions correctives et le suivi
+          des résultats.
+        </p>
 
-    <p>
-      Le projet met en avant l’analyse du fonctionnement de la ligne, l’identification
-      du goulot d’étranglement, la mise en place d’actions correctives et le suivi
-      des résultats.
-    </p>
+        <p><strong>Résultat présenté :</strong> amélioration du taux de fonctionnement de 62% à 80%.</p>
+        <p><strong>Compétences :</strong> gestion de projet, analyse terrain, amélioration continue, coordination d’équipe.</p>
+        <p><strong>Réalisation :</strong> conception d’un site interactif avec Framer pour présenter le projet.</p>
 
-    <p><strong>Résultat présenté :</strong> amélioration du taux de fonctionnement de 62% à 80%</p>
-
-    <p><strong>Compétences :</strong> gestion de projet, analyse terrain, amélioration continue, coordination d’équipe</p>
-
-<p><strong>Réalisation :</strong> conception d’un site interactif avec Framer pour présenter le projet</p>
-
-    <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-      Voir le projet
-    </a>
-  </div>
-
-</div>
-
-
-
-      <article class="project">
-        <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
-          <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
-        </a>
-
-        <div class="project-content">
-          <div class="project-type">Site vitrine</div>
-          <h3>Bocage Élec Service</h3>
-          <p>
-    Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale.
-    L’objectif était de concevoir un site clair, structuré et cohérent, capable
-    de présenter les services proposés et de faciliter la prise de contact.
-  </p>
-
-  <p>
-    Le projet s’articule autour de plusieurs pages (accueil, services, domaines
-    d’intervention et contact), avec une attention particulière portée à la
-    lisibilité, à la navigation et à la cohérence visuelle.
-  </p>
-
-  <p>
-    Un formulaire de contact ainsi que des sections orientées “besoins clients”
-    ont été intégrés afin de rendre le site plus réaliste et proche des attentes
-    d’un artisan.
-  </p>
-
-  <p><strong>Compétences mobilisées :</strong></p>
-  <ul>
-    <li>Structuration HTML</li>
-    <li>Mise en page et design en CSS</li>
-    <li>Création de navigation multi-pages</li>
-    <li>Conception orientée utilisateur</li>
-  </ul>
-
-  <p><strong>Technologies :</strong> HTML, CSS</p>
-
-          <div class="project-actions">
-            <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              Voir le projet
-  </a>
-</div>
-      </article>
-
-      <article class="project">
-        <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
-          <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
-        </a>
-
-        <div class="project-content">
-          <div class="project-type">Site vitrine</div>
-          <h3>Garage du Bocage</h3>
-          <p>
-            Création d’un site vitrine fictif pour un garage automobile afin de travailler la structure HTML,
-            le CSS, la navigation entre plusieurs pages et une identité visuelle cohérente avec un secteur.
-          </p>
-          <div class="project-meta">
-            <strong>Outils :</strong> HTML, CSS
-          </div>
-
-          <div class="project-actions">
-            <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              Voir le projet
-            </a>
-          </div>
+        <div class="project-actions">
+          <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
         </div>
-      </article>
+      </div>
+    </article>
+
+    <article class="project">
+      <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site vitrine</div>
+
+        <h3>Bocage Élec Service</h3>
+
+        <p>
+          Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale.
+          L’objectif était de concevoir un site clair, structuré et cohérent, capable
+          de présenter les services proposés et de faciliter la prise de contact.
+        </p>
+
+        <p>
+          Le projet s’articule autour de plusieurs pages, avec une attention particulière portée
+          à la lisibilité, à la navigation et à la cohérence visuelle.
+        </p>
+
+        <p><strong>Compétences mobilisées :</strong></p>
+        <ul>
+          <li>Structuration HTML.</li>
+          <li>Mise en page et design en CSS.</li>
+          <li>Création de navigation multi-pages.</li>
+          <li>Conception orientée utilisateur.</li>
+        </ul>
+
+        <p><strong>Technologies :</strong> HTML, CSS.</p>
+
+        <div class="project-actions">
+          <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project">
+      <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site vitrine</div>
+
+        <h3>Garage du Bocage</h3>
+
+        <p>
+          Création d’un site vitrine fictif pour un garage automobile afin de travailler la structure HTML,
+          le CSS, la navigation entre plusieurs pages et une identité visuelle cohérente avec un secteur.
+        </p>
+
+        <div class="project-meta">
+          <strong>Outils :</strong> HTML, CSS.
+        </div>
+
+        <div class="project-actions">
+          <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="cta">
+      <div>
+        <h2>Je cherche une opportunité pour progresser concrètement</h2>
+        <p>
+          Je recherche un contrat de professionnalisation afin de développer mes compétences en conception de sites,
+          webmarketing et gestion de projet digital dans un cadre professionnel, structuré et formateur.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
+          Me contacter par email
+        </a>
+
+        <a href="https://www.linkedin.com/in/pierre-fran%C3%A7ois-ceccaldi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Voir mon LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>© 2026 - Pierre-François Ceccaldi - Portfolio</p>
