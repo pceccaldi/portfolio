@@ -290,39 +290,77 @@
       color: #cbd5e1;
     }
 
-    .projects-box {
-      display: grid;
-      gap: 18px;
-    }
-
-    .project-mini {
-      padding: 22px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.03);
+    .project {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: #1e293b;
       border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.3s;
     }
 
-    .project-mini h3 {
-      color: #ffffff;
-      margin-bottom: 8px;
-      font-size: 1.05rem;
+    .project:hover {
+      transform: translateY(-5px);
     }
 
-    .project-mini p {
-      color: #94a3b8;
+    .project-image-link {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .project-img {
+      width: 320px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .project-img:hover {
+      transform: scale(1.03);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 24px 24px 24px 0;
+    }
+
+    .project-type {
+      display: inline-block;
       margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #93c5fd;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(96,165,250,0.2);
+    }
+
+    .project-content h3 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+
+    .project-meta {
+      color: #94a3b8;
+      margin-bottom: 18px;
       font-size: 0.95rem;
     }
 
-    .project-mini a {
-      color: #60a5fa;
-      font-weight: 600;
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
-
-    .project-mini a:hover {
-      color: #93c5fd;
-    }
-
     .learned {
       border-left: 3px solid #2563eb;
       padding-left: 12px;
@@ -590,54 +628,111 @@
       </p>
     </div>
 
-    <div class="projects-box">
-      <div class="project-mini">
-        <h3>Site vitrine – Garage du Bocage</h3>
-        <p>
-          Projet HTML/CSS réalisé pour travailler la structure d’un site vitrine, la cohérence visuelle,
-          la navigation entre pages et la présentation d’un service professionnel.
-        </p>
-        <p class="learned">
-          Ce que j’ai travaillé : organisation des sections, clarté du message, navigation et hiérarchie visuelle.
-        </p>
-        <a href="../projet-garage/index.html" target="_blank">Voir le projet</a>
-      </div>
+  <div class="project">
 
-      <div class="project-mini">
-        <h3>Portfolio personnel</h3>
-        <p>
-          Création de ce portfolio pour présenter mon parcours, ma reconversion, mes premiers projets
-          et ma démarche de progression vers le digital.
-        </p>
-        <p class="learned">
-          Ce que j’ai travaillé : storytelling, structuration de contenu, présentation de compétences et cohérence globale.
-        </p>
-        <a href="#profil">Voir ma démarche</a>
-      </div>
-    </div>
-  </section>
+  <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer">
+    <img src="images-portfolio/ligne-origine.jpg" alt="Projet optimisation ligne de production" class="project-img">
+  </a>
 
-  <section class="section" id="contact">
-    <div class="cta">
-      <div>
-        <h2>Je cherche une opportunité pour progresser concrètement</h2>
-        <p>
-          Je recherche un contrat de professionnalisation afin de développer mes compétences en conception de sites,
-          webmarketing et gestion de projet digital dans un cadre professionnel, structuré et formateur.
-        </p>
-      </div>
 
-      <div class="hero-actions">
-        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
-          Me contacter par email
+  <div class="project-content">
+          <div class="project-type">Site de présentation</div>
+          <p>
+	    <h2>Optimisation d’une ligne de production</h2>
+
+    <p>
+      Présentation d’un projet tutoré basé sur une problématique industrielle :
+      améliorer le taux de fonctionnement d’une ligne de production de flacons
+      en identifiant les causes principales d’arrêts et de pertes de performance.
+    </p>
+
+    <p>
+      Le projet met en avant l’analyse du fonctionnement de la ligne, l’identification
+      du goulot d’étranglement, la mise en place d’actions correctives et le suivi
+      des résultats.
+    </p>
+
+    <p><strong>Résultat présenté :</strong> amélioration du taux de fonctionnement de 62% à 80%</p>
+
+    <p><strong>Compétences :</strong> gestion de projet, analyse terrain, amélioration continue, coordination d’équipe</p>
+
+<p><strong>Réalisation :</strong> conception d’un site interactif avec Framer pour présenter le projet</p>
+
+    <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+      Voir le projet
+    </a>
+  </div>
+
+</div>
+
+
+
+      <article class="project">
+        <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+          <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
         </a>
 
-        <a href="https://www.linkedin.com/in/pierre-fran%C3%A7ois-ceccaldi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          Voir mon LinkedIn
+        <div class="project-content">
+          <div class="project-type">Site vitrine</div>
+          <h3>Bocage Élec Service</h3>
+          <p>
+    Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale.
+    L’objectif était de concevoir un site clair, structuré et cohérent, capable
+    de présenter les services proposés et de faciliter la prise de contact.
+  </p>
+
+  <p>
+    Le projet s’articule autour de plusieurs pages (accueil, services, domaines
+    d’intervention et contact), avec une attention particulière portée à la
+    lisibilité, à la navigation et à la cohérence visuelle.
+  </p>
+
+  <p>
+    Un formulaire de contact ainsi que des sections orientées “besoins clients”
+    ont été intégrés afin de rendre le site plus réaliste et proche des attentes
+    d’un artisan.
+  </p>
+
+  <p><strong>Compétences mobilisées :</strong></p>
+  <ul>
+    <li>Structuration HTML</li>
+    <li>Mise en page et design en CSS</li>
+    <li>Création de navigation multi-pages</li>
+    <li>Conception orientée utilisateur</li>
+  </ul>
+
+  <p><strong>Technologies :</strong> HTML, CSS</p>
+
+          <div class="project-actions">
+            <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Voir le projet
+  </a>
+</div>
+      </article>
+
+      <article class="project">
+        <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+          <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
         </a>
-      </div>
-    </div>
-  </section>
+
+        <div class="project-content">
+          <div class="project-type">Site vitrine</div>
+          <h3>Garage du Bocage</h3>
+          <p>
+            Création d’un site vitrine fictif pour un garage automobile afin de travailler la structure HTML,
+            le CSS, la navigation entre plusieurs pages et une identité visuelle cohérente avec un secteur.
+          </p>
+          <div class="project-meta">
+            <strong>Outils :</strong> HTML, CSS
+          </div>
+
+          <div class="project-actions">
+            <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              Voir le projet
+            </a>
+          </div>
+        </div>
+      </article>
 
   <footer>
     <p>© 2026 - Pierre-François Ceccaldi - Portfolio</p>
