@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Garage du Bocage - Services</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #c62828;
+    }
+
+    .top-banner {
+      background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 90px 20px;
+    }
+
+    .top-banner h1 {
+      font-size: 2.7rem;
+      margin-bottom: 15px;
+    }
+
+    .top-banner p {
+      max-width: 700px;
+      margin: auto;
+      font-size: 1.05rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .service {
+      background: white;
+      padding: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-left: 5px solid #c62828;
+    }
+
+    .service h2 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .bottom-text {
+      margin-top: 50px;
+      background: #ececec;
+      padding: 30px;
+      border-radius: 6px;
+      text-align: center;
+      color: #444;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #c62828;
+      color: white;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #a61f1f;
+    }
+
+    footer {
+      background: #111;
+      color: #bbb;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .top-banner h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="top-banner">
+    <h1>Nos services</h1>
+    <p>
+      Des prestations adaptées à l’entretien et à la réparation de véhicules
+      toutes marques.
+    </p>
+  </section>
+
+  <div class="container">
+    <div class="services-list">
+      <div class="service">
+        <h2>Entretien courant</h2>
+        <p>Vidange, remplacement des filtres, contrôle des niveaux et révision du véhicule.</p>
+      </div>
+
+      <div class="service">
+        <h2>Réparation mécanique</h2>
+        <p>Interventions sur les éléments d’usure et résolution de pannes mécaniques courantes.</p>
+      </div>
+
+      <div class="service">
+        <h2>Diagnostic électronique</h2>
+        <p>Contrôle des voyants, lecture de défauts et recherche de panne ciblée.</p>
+      </div>
+
+      <div class="service">
+        <h2>Pneumatiques</h2>
+        <p>Contrôle, remplacement et vérification de l’état général des pneus.</p>
+      </div>
+
+      <div class="service">
+        <h2>Freinage</h2>
+        <p>Vérification et remplacement des pièces essentielles à la sécurité du véhicule.</p>
+      </div>
+
+      <div class="service">
+        <h2>Pré-contrôle technique</h2>
+        <p>Contrôle des points importants avant passage au contrôle technique.</p>
+      </div>
+    </div>
+
+    <div class="bottom-text">
+      <p>
+        Le Garage du Bocage met l’accent sur la clarté des interventions,
+        la qualité du service et la proximité avec ses clients.
+      </p>
+      <a href="contact.html" class="btn">Nous contacter</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 - Garage du Bocage</p>
+  </footer>
+
+</body>
+</html>

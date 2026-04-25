@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Garage du Bocage : entretien, réparation et diagnostic automobile à Souleuvre en Bocage.">
+
+  <title>Garage du Bocage - Accueil</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #1a1a1a;
+      padding: 18px 30px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #c62828;
+    }
+
+    .hero {
+      height: 85vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("images/photo-garage.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 10px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #c62828;
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #a61f1f;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: #1a1a1a;
+    }
+
+    .section p.intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      color: #555;
+    }
+
+    .highlights {
+      max-width: 850px;
+      margin: 40px auto 0;
+    }
+
+    .highlight-item {
+      padding: 22px 0;
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    .highlight-item:last-child {
+      border-bottom: none;
+    }
+
+    .highlight-item h3 {
+      margin-bottom: 8px;
+      color: #1a1a1a;
+      font-size: 1.2rem;
+    }
+
+    .highlight-item p {
+      color: #555;
+    }
+
+    .band {
+      background: #1a1a1a;
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .band p {
+      max-width: 850px;
+      margin: auto;
+      color: #d0d0d0;
+    }
+
+    footer {
+      background: #111;
+      color: #bbb;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: auto;
+        padding: 80px 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Garage du Bocage</h1>
+      <p>Entretien, réparation et diagnostic automobile à Souleuvre en Bocage</p>
+      <a href="services.html" class="btn">Voir nos services</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Un garage de proximité</h2>
+    <p class="intro">
+      Le Garage du Bocage accompagne les automobilistes pour l’entretien courant,
+      les réparations mécaniques et le diagnostic de panne, avec une approche simple,
+      sérieuse et efficace.
+    </p>
+
+<p class="intro">
+  Toutes marques • Intervention rapide • Devis clair avant intervention
+</p>
+
+  </section>
+
+  <section class="section">
+    <h2>Pourquoi choisir le Garage du Bocage</h2>
+    <p class="intro">
+      Nous proposons un accompagnement simple, clair et efficace pour l’entretien
+      et la réparation de votre véhicule.
+    </p>
+
+    <div class="highlights">
+      <div class="highlight-item">
+        <h3>Entretien courant</h3>
+        <p>Vidange, révision, filtres, freins et contrôle général du véhicule.</p>
+      </div>
+
+      <div class="highlight-item">
+        <h3>Réparation mécanique</h3>
+        <p>Interventions sur les pannes courantes et les pièces d’usure.</p>
+      </div>
+
+      <div class="highlight-item">
+        <h3>Diagnostic précis</h3>
+        <p>Recherche de panne et contrôle électronique pour cibler l’intervention.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <h2>Professionnalisme et réactivité</h2>
+    <p>
+      Notre objectif est de proposer un service fiable, clair et accessible,
+      avec un accompagnement adapté aux besoins de chaque client.
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2026 - Garage du Bocage</p>
+  </footer>
+
+</body>
+</html>

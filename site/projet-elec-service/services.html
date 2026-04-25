@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bocage Élec Service - Services</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+  nav {
+  background: #111827;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo img {
+  height: 45px;
+  display: block;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.92rem;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #f59e0b;
+}
+
+.nav-cta {
+  background: #f59e0b;
+  color: #111827 !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-cta:hover {
+  background: #d97706;
+  color: #111827 !important;
+}
+
+.top-banner {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.82)),
+    url("images/page2.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.top-banner-content {
+  max-width: 900px;
+  width: 100%;
+}
+
+.top-banner h1 {
+  font-size: 2.7rem;
+  margin-bottom: 15px;
+}
+
+.top-banner p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #e5e7eb;
+}
+
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .service {
+      background: white;
+      padding: 28px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-left: 5px solid #f59e0b;
+      border-radius: 10px;
+    }
+
+    .service h2 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    .bottom-text {
+      margin-top: 50px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      color: #444;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #f59e0b;
+      color: #111827;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #d97706;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #9ca3af;
+      text-align: center;
+      padding: 24px;
+      margin-top: 50px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .top-banner h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+<a href="index.html" class="logo">
+    <img src="images/logo.jpg" alt="Bocage Elec Service">
+  </a>
+
+    <a href="index.html">Accueil</a>
+    <a href="expertise.html">Expertise</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contactez nous</a>
+    <a href="../landing-depannage/index.html" class="nav-cta">
+  Dépannage urgent
+</a>
+  </nav>
+
+<section class="top-banner">
+  <div class="top-banner-content">
+    <h1>Nos services</h1>
+    <p>
+      Des prestations adaptées aux besoins courants en électricité générale, en rénovation comme en dépannage.
+    </p>
+  </div>
+
+</section>
+  <div class="container">
+    <div class="services-list">
+      <div class="service">
+        <h2>Installation électrique</h2>
+        <p>Création ou modification d’installations électriques dans le neuf ou l’existant.</p>
+      </div>
+
+      <div class="service">
+        <h2>Mise aux normes</h2>
+        <p>Vérification et amélioration de la sécurité d’installations électriques existantes.</p>
+      </div>
+
+      <div class="service">
+        <h2>Dépannage</h2>
+        <p>Recherche de panne, intervention sur coupures, dysfonctionnements ou anomalies électriques.</p>
+      </div>
+
+      <div class="service">
+        <h2>Éclairage intérieur / extérieur</h2>
+        <p>Pose ou remplacement de luminaires et solutions d’éclairage adaptées aux besoins.</p>
+      </div>
+
+      <div class="service">
+        <h2>Prises et interrupteurs</h2>
+        <p>Ajout, remplacement ou réorganisation des équipements pour améliorer le confort.</p>
+      </div>
+
+      <div class="service">
+        <h2>Petits travaux électriques</h2>
+        <p>Interventions ciblées pour améliorer ou compléter une installation existante.</p>
+      </div>
+    </div>
+
+    <div class="bottom-text">
+      <p>
+        Bocage Élec Service met l’accent sur la clarté de l’intervention, la sécurité
+        et la qualité du service rendu.
+      </p>
+      <a href="contact.html" class="btn">Nous contacter</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 - Bocage Élec Service</p>
+  </footer>
+
+</body>
+</html>

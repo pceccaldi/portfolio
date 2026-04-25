@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Dépannage électrique - Bocage Élec Service</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(8, 15, 32, 0.82), rgba(8, 15, 32, 0.95)),
+        url("../images-portfolio/site-elec.jpg");
+      background-size: cover;
+      background-position: center;
+      padding: 80px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      width: 100%;
+    }
+
+    .hero-content {
+      max-width: 760px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,0.35);
+      background: rgba(59,130,246,0.08);
+      color: #93c5fd;
+      font-size: 0.9rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: 3.3rem;
+      line-height: 1.08;
+      color: #ffffff;
+      margin-bottom: 22px;
+    }
+
+    h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+      max-width: 680px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .btn-call {
+      background: #f59e0b;
+      color: #111827;
+      box-shadow: 0 10px 25px rgba(245,158,11,0.25);
+    }
+
+    .btn-call:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    .btn-quote {
+      background: #2563eb;
+      color: #ffffff;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+    }
+
+    .btn-quote:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .btn-site {
+      position: absolute;
+      top: 42px;
+      right: 42px;
+      background: #1e293b;
+      color: #e5e7eb;
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .btn-site:hover {
+      background: #334155;
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 75px 20px;
+    }
+
+    .section-title {
+      margin-bottom: 35px;
+      max-width: 760px;
+    }
+
+    .section-title h2 {
+      color: #ffffff;
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .card h3 {
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #cbd5e1;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .step strong {
+      display: block;
+      color: #60a5fa;
+      margin-bottom: 8px;
+    }
+
+    .step span {
+      color: #cbd5e1;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, rgba(37,99,235,0.22), rgba(14,165,233,0.12));
+      border: 1px solid rgba(96,165,250,0.18);
+      border-radius: 22px;
+      padding: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cta h2 {
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      color: #cbd5e1;
+      max-width: 650px;
+    }
+
+    footer {
+      text-align: center;
+      color: #64748b;
+      padding: 28px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: auto;
+        padding: 90px 20px 70px;
+      }
+
+      .btn-site {
+        position: static;
+        display: inline-block;
+        margin-bottom: 22px;
+      }
+
+      h1 {
+        font-size: 2.1rem;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .actions {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <a href="../projet-elec-service/index.html" class="btn-site">
+      Voir le site complet
+    </a>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="badge">Landing page • Dépannage électrique • Prise de contact</div>
+
+        <h1>
+          Une panne électrique ? <span>Un électricien local intervient rapidement.</span>
+        </h1>
+
+        <p>
+          Bocage Élec Service accompagne les particuliers pour les dépannages,
+          installations et petits travaux électriques.
+        </p>
+
+        <p>
+          Cette page a été pensée pour guider l’utilisateur vers une action simple :
+          appeler ou demander un devis rapidement.
+        </p>
+
+        <div class="actions">
+          <a href="tel:0200000000" class="btn btn-call">Appeler maintenant</a>
+          <a href="#devis" class="btn btn-quote">Demander un devis</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-title">
+      <h2>Des services clairement identifiés</h2>
+      <p>
+        L’objectif est de permettre au visiteur de comprendre rapidement les prestations proposées.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Dépannage</h3>
+        <p>Panne de courant, prise défectueuse, problème de tableau électrique ou anomalie à identifier.</p>
+      </div>
+
+      <div class="card">
+        <h3>Installation</h3>
+        <p>Pose de prises, luminaires, protections électriques et petits travaux d’amélioration.</p>
+      </div>
+
+      <div class="card">
+        <h3>Mise en sécurité</h3>
+        <p>Vérification d’installation, conseils et interventions pour améliorer la sécurité électrique.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">
+      <h2>Un parcours simple pour passer à l’action</h2>
+      <p>
+        La page limite les distractions et met en avant les informations essentielles.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <strong>1. Identifier</strong>
+        <span>Le visiteur comprend rapidement le service proposé.</span>
+      </div>
+
+      <div class="step">
+        <strong>2. Rassurer</strong>
+        <span>Le ton met en avant la proximité et la réactivité.</span>
+      </div>
+
+      <div class="step">
+        <strong>3. Guider</strong>
+        <span>Les boutons d’action sont visibles et répétés.</span>
+      </div>
+
+      <div class="step">
+        <strong>4. Convertir</strong>
+        <span>L’utilisateur peut appeler ou demander un devis.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="devis">
+    <div class="cta">
+      <div>
+        <h2>Besoin d’une intervention ou d’un devis ?</h2>
+        <p>
+          Contactez Bocage Élec Service pour expliquer votre besoin et obtenir une réponse adaptée.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a href="tel:0200000000" class="btn btn-call">Appeler</a>
+        <a href="mailto:contact@bocage-elec.fr" class="btn btn-quote">Envoyer un email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Projet fictif réalisé dans une démarche d’apprentissage — Landing page orientée conversion</p>
+  </footer>
+
+</body>
+</html>

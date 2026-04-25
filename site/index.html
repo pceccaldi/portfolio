@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Portfolio - Pierre-François Ceccaldi</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 15, 32, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #60a5fa;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(rgba(8, 15, 32, 0.75), rgba(8, 15, 32, 0.92)),
+        url("images-portfolio/fond-ecran.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 70px 20px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(96,165,250,0.35);
+      background: rgba(59,130,246,0.08);
+      color: #93c5fd;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.25rem;
+      line-height: 1.08;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      color: #60a5fa;
+    }
+
+    .hero p {
+      max-width: 700px;
+      color: #cbd5e1;
+      font-size: 1.08rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-note {
+      margin-top: 8px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #e5e7eb;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(30,41,59,0.92), rgba(15,23,42,0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .info-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-item strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .info-item span {
+      color: #cbd5e1;
+      font-size: 0.94rem;
+    }
+
+    .section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 80px 20px;
+    }
+
+    .section-header {
+      max-width: 780px;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: #94a3b8;
+    }
+
+    .about-grid,
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: #111827;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .panel h3 {
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .panel p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+    }
+
+    /* BARRE DÉMARCHE */
+.demarche-bar {
+  background: #111827; /* même fond que ton site */
+  padding: 40px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.demarche-container {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+.step {
+  color: #e5e7eb;
+  text-align: center;
+  flex: 1;
+  min-width: 140px;
+  position: relative;
+}
+
+.step strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: #60a5fa;
+}
+
+.step span {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.step:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #60a5fa;
+  opacity: 0.6;
+}
+
+    .skill-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .skill-item {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: #cbd5e1;
+    }
+
+    .project {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      background: #1e293b;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project-image-link {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .project-img {
+      width: 320px;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .project-img:hover {
+      transform: scale(1.03);
+    }
+
+    .project-content {
+      flex: 1;
+      padding: 24px 24px 24px 0;
+    }
+
+    .project-type {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      color: #93c5fd;
+      background: rgba(59,130,246,0.08);
+      border: 1px solid rgba(96,165,250,0.2);
+    }
+
+    .project-content h3 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .project-content p {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      max-width: 700px;
+    }
+
+    .project-content ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: #cbd5e1;
+    }
+
+    .project-meta {
+      color: #94a3b8;
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, rgba(37,99,235,0.18), rgba(14,165,233,0.12));
+      border: 1px solid rgba(96,165,250,0.18);
+      border-radius: 20px;
+      padding: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cta h2 {
+      color: #ffffff;
+      margin-bottom: 8px;
+      font-size: 1.8rem;
+    }
+
+    .cta p {
+      color: #cbd5e1;
+      max-width: 700px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-container,
+      .about-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .project {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .project-img {
+        width: 100%;
+        height: 240px;
+      }
+
+      .project-content {
+        padding: 24px;
+      }
+    }
+
+.full-width {
+  padding: 28px;
+}
+
+.ux-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 22px 0;
+}
+
+.ux-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.ux-card h4 {
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.ux-card ul {
+  margin-left: 18px;
+  color: #cbd5e1;
+}
+
+.project-note {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+@media (max-width: 780px) {
+  .ux-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    @media (max-width: 640px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+
+      .section {
+        padding: 65px 20px;
+      }
+
+      .step:not(:last-child)::after {
+        display: none;
+      }
+
+      .cta {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Ceccaldi Pierre-François</div>
+
+      <div class="nav-links">
+        <a href="#profil">Profil</a>
+        <a href="#demarche">Démarche</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-container">
+      <div>
+        <div class="hero-badge">Portfolio • Reconversion digitale • Chef de projet web junior</div>
+
+        <h1>
+          De la maintenance industrielle à la <span>coordination de projets web</span>
+        </h1>
+
+        <p>
+          Après un parcours en maintenance, je construis aujourd’hui ma reconversion vers le digital avec un objectif clair :
+          apprendre à coordonner, structurer et suivre des projets web jusqu’à la livraison de livrables utiles et cohérents.
+        </p>
+
+        <p>
+          Mes premiers projets me permettent de travailler la création de sites, la structuration de contenu,
+          l’expérience utilisateur et la présentation claire d’un besoin.
+        </p>
+
+        <p class="hero-note">
+          Mon fil rouge : analyser le besoin • organiser les étapes • produire un livrable clair • progresser à chaque projet.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+          <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2>En bref</h2>
+
+        <div class="info-list">
+          <div class="info-item">
+            <strong>Profil</strong>
+            <span>Technicien de maintenance en reconversion vers les métiers du web et de la stratégie digitale.</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Objectif</strong>
+            <span>Intégrer un Bachelor Chef de Projet Web & Stratégie Digitale en alternance.</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Base déjà engagée</strong>
+            <span>HTML/CSS, Framer, UX/UI, structuration de contenu et premiers projets concrets.</span>
+          </div>
+
+          <div class="info-item">
+            <strong>Valeur ajoutée</strong>
+            <span>Une approche structurée : comprendre, organiser, suivre et améliorer.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="profil">
+    <div class="section-header">
+      <h2>Pourquoi cette orientation me correspond</h2>
+      <p>
+        Le métier de chef de projet web m’attire parce qu’il combine organisation, coordination, compréhension du besoin,
+        suivi des livrables et amélioration continue. C’est une logique que je connais déjà dans un cadre technique,
+        et que je souhaite maintenant appliquer aux projets digitaux.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="panel">
+        <h3>Ce que mon parcours m’a apporté</h3>
+        <p>
+          La maintenance industrielle m’a appris à analyser une situation, diagnostiquer un problème,
+          prioriser les actions et intervenir avec méthode.
+        </p>
+        <p>
+          J’ai également été amené à échanger avec différents interlocuteurs, à suivre des interventions
+          et à garder une vision claire des priorités, même dans des situations où il faut avancer efficacement.
+        </p>
+      </div>
+
+      <div class="panel">
+        <h3>Ce que je veux développer maintenant</h3>
+        <p>
+          Je souhaite consolider mes compétences en création de sites web, UX/UI, structuration de contenu,
+          communication digitale et webmarketing.
+        </p>
+        <p>
+          Mon objectif est de progresser vers un rôle capable de faire le lien entre les besoins du projet,
+          les contenus, les outils utilisés et les différents profils impliqués : webdesigners, rédacteurs,
+          référents techniques ou webmarketeurs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+<section class="section" id="demarche">
+  <div class="section-header">
+    <h2>Ma démarche projet</h2>
+    <p>
+      Mon parcours technique m’a appris à avancer avec méthode : comprendre une situation, organiser les actions,
+      suivre la réalisation et améliorer ce qui peut l’être. J’applique aujourd’hui cette logique à mes projets web,
+      avec une attention particulière portée à la clarté du besoin, à la qualité du rendu et à la cohérence du parcours utilisateur.
+    </p>
+  </div>
+</section>
+
+  <section class="demarche-bar">
+    <div class="demarche-container">
+      <div class="step">
+        <strong>Analyser</strong>
+        <span>Comprendre le besoin</span>
+      </div>
+
+      <div class="step">
+        <strong>Organiser</strong>
+        <span>Définir les contenus et priorités</span>
+      </div>
+
+      <div class="step">
+        <strong>Coordonner</strong>
+        <span>Relier besoin, contenu et technique</span>
+      </div>
+
+      <div class="step">
+        <strong>Améliorer</strong>
+        <span>Corriger et améliorer le livrable</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="competences">
+    <div class="section-header">
+      <h2>Compétences travaillées et axes de progression</h2>
+      <p>
+        Je construis progressivement une base pratique autour de la création web, tout en valorisant les compétences
+        d’organisation, d’analyse et de suivi acquises en maintenance. L’objectif : évoluer vers un profil capable de piloter
+        des projets digitaux avec méthode.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="panel">
+        <h3>Base déjà engagée</h3>
+        <div class="skill-list">
+          <div class="skill-item">Création de pages web simples et structurées.</div>
+          <div class="skill-item">HTML / CSS : bases et structuration de contenu.</div>
+          <div class="skill-item">Framer : création de sites et présentation de projets.</div>
+          <div class="skill-item">Organisation de contenu, hiérarchie visuelle et navigation.</div>
+          <div class="skill-item">Analyse, gestion des priorités et suivi de réalisation issus de mon parcours technique.</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Compétences à approfondir</h3>
+        <div class="skill-list">
+          <div class="skill-item">Conception de sites plus complets.</div>
+          <div class="skill-item">Webmarketing et stratégie digitale.</div>
+          <div class="skill-item">SEO et analyse de trafic.</div>
+          <div class="skill-item">Design d’interface et expérience utilisateur.</div>
+          <div class="skill-item">Gestion de projet digital, coordination d’équipe et suivi des livrables.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="projets">
+    <div class="section-header">
+      <h2>Premiers projets concrets</h2>
+      <p>
+        Ces projets sont réalisés dans une démarche d’apprentissage. Chacun me permet de travailler un aspect différent :
+        présenter une problématique, organiser un contenu, construire une navigation claire et produire un livrable web exploitable.
+      </p>
+    </div>
+
+    <article class="project">
+      <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/ligne-origine.jpg" alt="Projet optimisation ligne de production" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site de présentation</div>
+
+        <h3>Optimisation d’une ligne de production</h3>
+
+        <p>
+          Ce projet présente une problématique issue du terrain : améliorer le taux de fonctionnement d’une ligne de production
+          de flacons en analysant les causes d’arrêts, les pertes de performance et les points de blocage.
+        </p>
+
+        <p>
+          L’objectif était de transformer une situation technique en support clair et compréhensible : contexte, analyse,
+          actions correctives et résultat obtenu. Ce projet fait donc le lien entre mon expérience maintenance et mon orientation
+          vers la gestion de projet web.
+        </p>
+
+        <p><strong>Démarche :</strong> analyse du besoin, structuration du contenu, présentation des étapes et mise en valeur du résultat.</p>
+        <p><strong>Résultat présenté :</strong> amélioration du taux de fonctionnement de 62% à 80%.</p>
+        <p><strong>Compétences mobilisées :</strong> gestion de projet, analyse terrain, amélioration continue, coordination et présentation d’un livrable.</p>
+        <p><strong>Réalisation :</strong> conception d’un site interactif avec Framer pour présenter le projet.</p>
+
+        <div class="project-actions">
+          <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+
+<article class="project">
+  <div class="project-content full-width">
+    <div class="project-type">Analyse UX</div>
+
+    <h3>Analyse UX – Site de restaurant local</h3>
+
+    <p>
+      Analyse d’un site de restaurant local afin d’évaluer la structure,
+      la lisibilité et l’expérience utilisateur.
+    </p>
+
+    <p>
+      L’objectif de cette analyse n’était pas de proposer une refonte inutile,
+      mais d’observer un site existant, d’identifier ses points forts et de
+      comprendre les choix qui rendent le parcours utilisateur efficace.
+    </p>
+
+    <div class="ux-analysis-grid">
+      <div class="ux-card">
+        <h4>Points forts observés</h4>
+        <ul>
+          <li>Navigation claire et intuitive.</li>
+          <li>Hiérarchie de l’information bien structurée.</li>
+          <li>Lisibilité efficace, y compris sur mobile.</li>
+          <li>Cohérence visuelle adaptée à l’univers du restaurant.</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <h4>Analyse globale</h4>
+        <p>
+          Le site propose une expérience utilisateur fluide, avec une organisation
+          logique des contenus et des actions clairement identifiées.
+        </p>
+	<p>
+	Une amélioration possible serait de rendre les actions principales (réserver, contacter)
+	accessibles en permanence, par exemple via la navigation.
+	</p>
+<p>
+Cette analyse m’a permis de comprendre qu’un projet web ne consiste pas toujours
+à modifier ou refaire un site, mais aussi à savoir reconnaître ce qui fonctionne déjà
+et à proposer des améliorations pertinentes.
+</p>
+      </div>
+    </div>
+
+    <p class="project-meta">
+      <strong>Compétences mobilisées :</strong>
+      analyse UX, observation du parcours utilisateur, hiérarchisation de l’information,
+      approche chef de projet web.
+    </p>
+
+    <p class="project-note">
+      Projet réalisé dans une démarche d’apprentissage, à partir de l’observation
+      d’un site existant.
+    </p>
+  </div>
+</article>
+
+
+    <article class="project">
+      <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site vitrine</div>
+
+        <h3>Bocage Élec Service</h3>
+
+        <p>
+          Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale. L’objectif était de présenter les services
+          de façon claire, rassurante et accessible, tout en facilitant la prise de contact.
+        </p>
+
+        <p>
+          J’ai organisé le site autour d’une structure multi-pages afin de guider le visiteur : comprendre l’activité,
+          identifier les services proposés puis accéder rapidement aux informations de contact.
+        </p>
+
+        <p>
+          Ce projet m’a permis de travailler la logique d’un site vitrine professionnel : hiérarchie de l’information,
+          cohérence visuelle, navigation simple et conception orientée utilisateur.
+        </p>
+
+        <p><strong>Rôle :</strong> conception, structuration du contenu et intégration du site.</p>
+
+
+        <p><strong>Compétences mobilisées :</strong></p>
+        <ul>
+          <li>Structuration HTML.</li>
+          <li>Mise en page et design en CSS.</li>
+          <li>Création de navigation multi-pages.</li>
+          <li>Conception orientée utilisateur.</li>
+          <li>Organisation du parcours visiteur.</li>
+        </ul>
+
+        <p><strong>Technologies :</strong> HTML, CSS.</p>
+
+        <div class="project-actions">
+          <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+
+
+
+    <article class="project">
+      <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site vitrine</div>
+
+        <h3>Garage du Bocage</h3>
+
+        <p>
+          Création d’un site vitrine fictif pour un garage automobile, avec pour objectif de présenter une activité locale,
+          ses services et ses informations essentielles de manière simple et lisible.
+        </p>
+
+        <p>Premier projet réalisé en HTML/CSS pour comprendre les bases de la structure web et de la navigation multi-pages. 
+Il m’a permis de continuer à travailler la construction d’un site multi-pages, la cohérence graphique
+          et l’adaptation du contenu à un secteur précis. L’idée était de proposer une expérience claire pour un visiteur
+          qui cherche rapidement une information ou un contact.
+        </p>
+
+        <p><strong>Rôle :</strong> structuration, intégration HTML/CSS et mise en forme du parcours utilisateur.</p>
+
+        <div class="project-meta">
+          <strong>Outils :</strong> HTML, CSS.
+        </div>
+
+        <div class="project-actions">
+          <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="cta">
+      <div>
+        <h2>Je cherche une alternance pour apprendre à piloter des projets web</h2>
+        <p>
+          Je recherche une alternance dans le cadre d’un Bachelor Chef de Projet Web & Stratégie Digitale afin de développer
+          mes compétences en coordination, webmarketing, conception de sites et suivi de livrables dans un environnement professionnel.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
+          Me contacter par email
+        </a>
+
+        <a href="https://www.linkedin.com/in/pierre-fran%C3%A7ois-ceccaldi" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+          Voir mon LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 - Pierre-François Ceccaldi - Portfolio</p>
+  </footer>
+
+</body>
+</html>
