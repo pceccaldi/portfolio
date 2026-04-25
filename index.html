@@ -445,6 +445,47 @@
       }
     }
 
+.full-width {
+  padding: 28px;
+}
+
+.ux-analysis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin: 22px 0;
+}
+
+.ux-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.ux-card h4 {
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.ux-card ul {
+  margin-left: 18px;
+  color: #cbd5e1;
+}
+
+.project-note {
+  color: #94a3b8;
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+@media (max-width: 780px) {
+  .ux-analysis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
     @media (max-width: 640px) {
       .nav-container {
         flex-direction: column;
@@ -698,6 +739,66 @@
       </div>
     </article>
 
+<article class="project">
+  <div class="project-content full-width">
+    <div class="project-type">Analyse UX</div>
+
+    <h3>Analyse UX – Site de restaurant local</h3>
+
+    <p>
+      Analyse d’un site de restaurant local afin d’évaluer la structure,
+      la lisibilité et l’expérience utilisateur.
+    </p>
+
+    <p>
+      L’objectif de cette analyse n’était pas de proposer une refonte inutile,
+      mais d’observer un site existant, d’identifier ses points forts et de
+      comprendre les choix qui rendent le parcours utilisateur efficace.
+    </p>
+
+    <div class="ux-analysis-grid">
+      <div class="ux-card">
+        <h4>Points forts observés</h4>
+        <ul>
+          <li>Navigation claire et intuitive.</li>
+          <li>Hiérarchie de l’information bien structurée.</li>
+          <li>Lisibilité efficace, y compris sur mobile.</li>
+          <li>Cohérence visuelle adaptée à l’univers du restaurant.</li>
+        </ul>
+      </div>
+
+      <div class="ux-card">
+        <h4>Analyse globale</h4>
+        <p>
+          Le site propose une expérience utilisateur fluide, avec une organisation
+          logique des contenus et des actions clairement identifiées.
+        </p>
+	<p>
+	Une amélioration possible serait de rendre les actions principales (réserver, contacter)
+	accessibles en permanence, par exemple via la navigation.
+	</p>
+<p>
+Cette analyse m’a permis de comprendre qu’un projet web ne consiste pas toujours
+à modifier ou refaire un site, mais aussi à savoir reconnaître ce qui fonctionne déjà
+et à proposer des améliorations pertinentes.
+</p>
+      </div>
+    </div>
+
+    <p class="project-meta">
+      <strong>Compétences mobilisées :</strong>
+      analyse UX, observation du parcours utilisateur, hiérarchisation de l’information,
+      approche chef de projet web.
+    </p>
+
+    <p class="project-note">
+      Projet réalisé dans une démarche d’apprentissage, à partir de l’observation
+      d’un site existant.
+    </p>
+  </div>
+</article>
+
+
     <article class="project">
       <a href="projet-elec-service/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
         <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
@@ -745,6 +846,8 @@
       </div>
     </article>
 
+
+
     <article class="project">
       <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
         <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
@@ -760,8 +863,8 @@
           ses services et ses informations essentielles de manière simple et lisible.
         </p>
 
-        <p>
-          Ce projet m’a permis de continuer à travailler la construction d’un site multi-pages, la cohérence graphique
+        <p>Premier projet réalisé en HTML/CSS pour comprendre les bases de la structure web et de la navigation multi-pages. 
+Il m’a permis de continuer à travailler la construction d’un site multi-pages, la cohérence graphique
           et l’adaptation du contenu à un secteur précis. L’idée était de proposer une expérience claire pour un visiteur
           qui cherche rapidement une information ou un contact.
         </p>
