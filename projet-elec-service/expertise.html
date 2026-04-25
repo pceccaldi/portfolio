@@ -19,32 +19,51 @@
       line-height: 1.6;
     }
 
-    nav {
-      background: #111827;
-      padding: 18px 28px;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+   nav {
+  background: #111827;
+  padding: 18px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
 .logo img {
   height: 45px;
+  display: block;
 }
-    }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 0.92rem;
-      transition: 0.3s;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.92rem;
+  transition: 0.3s;
+}
 
-    nav a:hover {
-      color: #f59e0b;
-    }
+nav a:hover {
+  color: #f59e0b;
+}
+
+.nav-cta {
+  background: #f59e0b;
+  color: #111827 !important;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-cta:hover {
+  background: #d97706;
+  color: #111827 !important;
+}
+    
+
 
 .top-banner {
   min-height: 80vh; /* même taille que le hero */
@@ -86,7 +105,7 @@
 }
 
     .section {
-      max-width: 1150px;
+      max-width: 1100px;
       margin: 70px auto;
       padding: 0 20px;
     }
@@ -224,7 +243,11 @@
     <a href="expertise.html">Expertise</a>
     <a href="services.html">Services</a>
     <a href="contact.html">Contactez nous</a>
+    <a href="../landing-depannage/index.html" class="nav-cta">
+  Dépannage urgent
+</a>
   </nav>
+
 
 <section class="top-banner">
   <div class="banner-content">
@@ -233,6 +256,7 @@
       Bocage Élec Service accompagne les besoins courants en électricité générale,
       en rénovation, en sécurisation et en dépannage, avec une approche locale et concrète.
     </p>
+</div>
   </section>
 
   <section class="section">
