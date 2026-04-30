@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Garage du Bocage - Entretien & réparation automobile</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --red: #c42828;
+      --red-dark: #9f1f1f;
+      --dark: #171b1f;
+      --dark-soft: #242a30;
+      --light: #f5f2ed;
+      --white: #ffffff;
+      --muted: #6f777d;
+      --line: rgba(23, 27, 31, 0.12);
+      --shadow: 0 18px 45px rgba(23, 27, 31, 0.14);
+      --radius: 20px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(245, 242, 237, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: auto;
+      padding: 16px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo {
+      font-weight: 900;
+      letter-spacing: 0.3px;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--red);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    .nav-call {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--dark);
+      color: white !important;
+    }
+
+    .nav-call:hover {
+      background: var(--red);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(23,27,31,0.88), rgba(23,27,31,0.56), rgba(23,27,31,0.12)),
+        url("images/photo-garage.jpg");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero-container {
+      max-width: 1180px;
+      width: 100%;
+      margin: auto;
+      padding: 80px 22px;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(196, 40, 40, 0.20);
+      border: 1px solid rgba(255,255,255,0.20);
+      color: #ffdada;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      font-size: 0.84rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: 0.96;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      color: #e8ecef;
+      font-size: 1.12rem;
+      max-width: 640px;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions,
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 900;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+      box-shadow: 0 12px 28px rgba(196, 40, 40, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.10);
+      color: white;
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+    }
+
+    .hero-infos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 52px;
+      max-width: 900px;
+    }
+
+    .hero-info {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .hero-info strong {
+      display: block;
+      color: white;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .hero-info span {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+    }
+
+    /* GENERAL */
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 86px 22px;
+    }
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 42px;
+}
+
+.kicker {
+  color: var(--red);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 0.86rem;
+  margin-bottom: 10px;
+}
+
+.section-header p {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      color: var(--dark);
+    }
+
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      transition: 0.25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(196, 40, 40, 0.28);
+      box-shadow: 0 24px 55px rgba(23, 27, 31, 0.18);
+
+    }
+.service-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: rgba(196, 40, 40, 0.10);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 18px;
+  transition: 0.25s ease;
+}
+
+.service-card:hover .service-icon {
+  background: var(--red);
+  color: white;
+  transform: scale(1.06);
+}
+
+    .service-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      color: var(--muted);
+    }
+
+
+.quick-cta {
+  max-width: 1180px;
+  margin: 0 auto 40px;
+  padding: 24px 22px;
+  background: var(--dark);
+  color: white;
+  border-radius: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  box-shadow: var(--shadow);
+}
+
+.quick-cta strong {
+  display: block;
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+.quick-cta span {
+  color: rgba(255,255,255,0.72);
+}
+
+@media (max-width: 700px) {
+  .quick-cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+    /* TRUST */
+    .trust-section {
+      background: var(--dark);
+      color: white;
+      margin: 30px 0;
+    }
+
+    .trust-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 82px 22px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .trust-inner h2 {
+      color: white;
+    }
+
+    .trust-inner p {
+      color: rgba(255,255,255,0.72);
+      margin-top: 14px;
+    }
+
+    .trust-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .trust-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .trust-item strong {
+      display: block;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    .trust-item span {
+      color: rgba(255,255,255,0.70);
+      font-size: 0.94rem;
+    }
+
+    /* ABOUT */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .about-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 14px;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .highlight-card {
+      background:
+        linear-gradient(145deg, rgba(196,40,40,0.14), rgba(255,255,255,0.85)),
+        var(--white);
+      border-color: rgba(196,40,40,0.18);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      padding: 16px;
+      background: #f7f4ef;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-item span,
+    .contact-item a {
+      color: var(--muted);
+    }
+
+    .hours {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .hour-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .hour-line strong {
+      color: var(--dark);
+    }
+
+    .map-placeholder {
+      min-height: 220px;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(23,27,31,0.88), rgba(196,40,40,0.55)),
+        url("../images-portfolio/garage-refonte.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      
+    }
+
+.map-embed {
+  margin-top: 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  min-height: 260px;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 260px;
+  border: 0;
+  display: block;
+}
+
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.72);
+      padding: 30px 22px;
+      text-align: center;
+      font-size: 0.92rem;
+    }
+.footer-note {
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.48);
+}
+
+    @media (max-width: 980px) {
+      .section-header,
+      .trust-inner,
+      .about,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .hero-infos,
+      .trust-list {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-container {
+        padding: 72px 22px;
+      }
+    }
+
+
+    @media (max-width: 640px) {
+      .nav-container {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-call {
+        width: 100%;
+        text-align: center;
+      }
+
+      .section {
+        padding: 64px 20px;
+      }
+
+      .service-card,
+      .about-card,
+      .contact-card {
+        padding: 24px;
+      }
+    }
+.floating-call {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .nav-call {
+    display: none;
+  }
+
+  body {
+    padding-bottom: 78px;
+  }
+
+  .floating-call {
+    display: block;
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 999;
+    background: var(--red);
+    color: white;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-weight: 900;
+    box-shadow: 0 12px 30px rgba(196, 40, 40, 0.35);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="logo-mark">GB</span>
+        Garage du Bocage
+      </a>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#garage">Le garage</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:+33231000000" class="nav-call">02 31 00 00 00</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="badge">Entretien • Réparation • Diagnostic</div>
+
+        <h1>Votre garage automobile toutes marques</h1>
+
+        <p>
+          Garage du Bocage accompagne les automobilistes pour l’entretien courant,
+          le diagnostic et les réparations mécaniques, avec une prise en charge claire
+          et des conseils adaptés.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
+          <a href="#services" class="btn btn-secondary">Voir les services</a>
+        </div>
+      </div>
+
+      <div class="hero-infos">
+        <div class="hero-info">
+          <strong>Toutes marques</strong>
+          <span>Entretien et réparation de véhicules particuliers.</span>
+        </div>
+
+        <div class="hero-info">
+          <strong>Diagnostic</strong>
+          <span>Recherche de panne et contrôle électronique.</span>
+        </div>
+
+        <div class="hero-info">
+          <strong>Contact rapide</strong>
+          <span>Un appel suffit pour prévoir une intervention.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section" id="services">
+      <div class="section-header">
+        <div>
+          <div class="kicker">Services</div>
+          <h2>Les prestations du garage</h2>
+        </div>
+
+        <p>
+          Les services sont organisés pour permettre au visiteur d’identifier rapidement
+          ce que propose le garage et de passer à l’action sans chercher l’information.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon">🔧</div>
+          <h3>Entretien & révision</h3>
+          <p>Vidange, filtres, niveaux, contrôles essentiels et entretien courant du véhicule.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💻</div>
+          <h3>Diagnostic automobile</h3>
+          <p>Lecture défauts, recherche de panne et analyse des systèmes électroniques.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🛞</div>
+          <h3>Pneumatiques</h3>
+          <p>Montage, équilibrage, contrôle de l’usure et conseils selon votre usage.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🛑</div>
+          <h3>Freinage</h3>
+          <p>Contrôle et remplacement des plaquettes, disques et éléments de freinage.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🔋</div>
+          <h3>Batterie</h3>
+          <p>Test, remplacement et vérification du circuit de charge.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Mécanique générale</h3>
+          <p>Réparations mécaniques, contrôle des organes et intervention toutes marques.</p>
+        </article>
+      </div>
+    </section>
+
+<section class="quick-cta">
+  <div>
+    <strong>Un voyant allumé ou un bruit suspect ?</strong>
+    <span>Contactez le garage pour organiser un diagnostic.</span>
+  </div>
+
+  <a href="#contact" class="btn btn-primary">Contacter le garage</a>
+</section>
+
+
+    <section class="trust-section" id="engagements">
+      <div class="trust-inner">
+        <div>
+          <div class="kicker">Engagements</div>
+          <h2>Un service clair, local et rassurant</h2>
+          <p>
+            Un site de garage doit inspirer confiance rapidement. Cette section met en avant
+            les éléments qui rassurent le visiteur avant la prise de contact.
+          </p>
+        </div>
+
+        <div class="trust-list">
+          <div class="trust-item">
+            <strong>Conseils clairs</strong>
+            <span>Explication des interventions avant engagement.</span>
+          </div>
+
+          <div class="trust-item">
+            <strong>Devis transparent</strong>
+            <span>Une estimation claire avant les réparations.</span>
+          </div>
+
+          <div class="trust-item">
+            <strong>Garage local</strong>
+            <span>Un interlocuteur proche et facilement joignable.</span>
+          </div>
+
+          <div class="trust-item">
+            <strong>Prise en charge rapide</strong>
+            <span>Contact direct pour organiser un rendez-vous.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section class="section" id="garage">
+  <div class="section-header">
+    <div class="kicker">Le garage</div>
+    <h2>Un garage local pour l’entretien de votre véhicule</h2>
+
+    <p>
+      Garage du Bocage accompagne les automobilistes pour l’entretien courant,
+      le diagnostic et la réparation de véhicules toutes marques.
+    </p>
+  </div>
+
+  <div class="about">
+    <div class="about-card">
+      <h3>Un service de proximité</h3>
+      <p>
+        Le garage propose une prise en charge simple et claire, avec des conseils adaptés
+        à l’état du véhicule et aux besoins du client.
+      </p>
+    </div>
+
+    <div class="about-card">
+  <h3>Des conseils transparents</h3>
+  <p>
+    Chaque intervention est expliquée clairement afin de proposer une solution adaptée
+    à l’état du véhicule et aux besoins du client.
+  </p>
+</div>
+  </div>
+</section>
+
+    <section class="section" id="contact">
+      <div class="section-header">
+        <div>
+          <div class="kicker">Contact</div>
+          <h2>Prendre rendez-vous</h2>
+        </div>
+
+        <p>
+          Le contact est volontairement placé en fin de page, mais reste accessible depuis
+          la navigation et les appels à l’action principaux.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Informations pratiques</h3>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Téléphone</strong>
+              <a href="tel:+33231000000">02 31 00 00 00</a>
+            </div>
+
+            <div class="contact-item">
+              <strong>Adresse</strong>
+              <span>12 route du Bocage, 14500 Vire Normandie</span>
+            </div>
+
+            <div class="contact-item">
+              <strong>Email</strong>
+              <a href="mailto:contact@garagedubocage.fr">contact@garagedubocage.fr</a>
+            </div>
+          </div>
+
+          <div class="actions">
+            <a href="tel:+33231000000" class="btn btn-primary">Appeler le garage</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Horaires d’ouverture</h3>
+
+          <div class="hours">
+            <div class="hour-line">
+              <strong>Lundi - Vendredi</strong>
+              <span>8h30 - 12h00 / 14h00 - 18h00</span>
+            </div>
+
+            <div class="hour-line">
+              <strong>Samedi</strong>
+              <span>9h00 - 12h00</span>
+            </div>
+
+            <div class="hour-line">
+              <strong>Dimanche</strong>
+              <span>Fermé</span>
+            </div>
+          </div>
+
+<div class="map-embed">
+  <iframe
+    src="https://www.google.com/maps?q=Vire%20Normandie&output=embed"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+      </div>
+
+  </div>
+      </div>
+    </section>
+
+  </main>
+
+<footer>
+  <p>Site fictif réalisé dans le cadre d’un projet portfolio.</p>
+  <p class="footer-note">
+    Garage du Bocage est un projet de démonstration : les informations de contact et la localisation sont utilisées à titre d’exemple.
+  </p>
+</footer>
+
+<a href="tel:+33231000000" class="floating-call">Appeler le garage</a>
+
+</body>
+</html>
