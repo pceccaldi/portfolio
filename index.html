@@ -555,6 +555,58 @@ nav {
   text-decoration: underline;
 }
 
+
+/* MINI ÉTUDE DE CAS - PROJET GARAGE */
+.project-summary {
+  margin: 18px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.summary-card {
+  background: var(--bg-card-soft);
+  border: 1px solid rgba(184,148,31,0.14);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.summary-card strong {
+  display: block;
+  color: #ffffff;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.summary-card span {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.project-tags span {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+@media (max-width: 780px) {
+  .project-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* CONTACT */
 .cta {
   background: linear-gradient(135deg, rgba(184,148,31,0.14), #202020);
@@ -863,7 +915,63 @@ footer {
 
 
 
-    <article class="project">
+    
+
+<article class="project">
+      <a href="etude-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/garage.jpg" alt="Projet de refonte UX Garage du Bocage" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Refonte UX / Site vitrine</div>
+
+        <h3>Garage du Bocage</h3>
+
+        <p>
+          Refonte d’un site vitrine fictif pour un garage automobile local, avec pour objectif
+          d’améliorer la clarté, la confiance et la prise de contact.
+        </p>
+
+        <div class="project-summary">
+          <div class="summary-card">
+            <strong>Problème</strong>
+            <span>Informations présentes, mais peu hiérarchisées et contact pas assez mis en avant.</span>
+          </div>
+
+          <div class="summary-card">
+            <strong>Objectif</strong>
+            <span>Rendre les services plus visibles et guider rapidement l’utilisateur vers une action.</span>
+          </div>
+
+          <div class="summary-card">
+            <strong>Solution</strong>
+            <span>Nouvelle structure, appels à l’action visibles et présentation plus rassurante.</span>
+          </div>
+        </div>
+
+        <p>
+          Ce projet met en avant une démarche de chef de projet web junior :
+          analyse de l’existant, hiérarchisation de l’information et amélioration du parcours utilisateur.
+        </p>
+
+        <div class="project-tags">
+          <span>Analyse UX</span>
+          <span>HTML / CSS</span>
+          <span>Structuration de contenu</span>
+          <span>Parcours utilisateur</span>
+        </div>
+
+        <div class="project-actions">
+          <a href="etude-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+
+
+
+<article class="project">
       <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="project-image-link">
         <img src="images-portfolio/ligne-origine.jpg" alt="Projet optimisation ligne de production" class="project-img">
       </a>
@@ -891,6 +999,55 @@ footer {
 
         <div class="project-actions">
           <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            Voir le projet
+          </a>
+        </div>
+      </div>
+    </article>
+
+
+
+<article class="project">
+      <a href="landing-depannage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
+        <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
+      </a>
+
+      <div class="project-content">
+        <div class="project-type">Site vitrine</div>
+
+        <h3>Bocage Élec Service</h3>
+
+        <p>
+          Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale. L’objectif était de présenter les services
+          de façon claire, rassurante et accessible, tout en facilitant la prise de contact.
+        </p>
+
+        <p>
+          J’ai organisé le site autour d’une structure multi-pages afin de guider le visiteur : comprendre l’activité,
+          identifier les services proposés puis accéder rapidement aux informations de contact.
+        </p>
+
+        <p>
+          Ce projet m’a permis de travailler la logique d’un site vitrine professionnel : hiérarchie de l’information,
+          cohérence visuelle, navigation simple et conception orientée utilisateur.
+        </p>
+
+        <p><strong>Rôle :</strong> conception, structuration du contenu et intégration du site.</p>
+
+
+        <p><strong>Compétences mobilisées :</strong></p>
+        <ul>
+          <li>Structuration HTML.</li>
+          <li>Mise en page et design en CSS.</li>
+          <li>Création de navigation multi-pages.</li>
+          <li>Conception orientée utilisateur.</li>
+          <li>Organisation du parcours visiteur.</li>
+        </ul>
+
+        <p><strong>Technologies :</strong> HTML, CSS.</p>
+
+        <div class="project-actions">
+          <a href="landing-depannage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
             Voir le projet
           </a>
         </div>
@@ -997,91 +1154,6 @@ et à proposer des améliorations pertinentes.
     </p>
   </div>
 </article>
-
-
-    <article class="project">
-      <a href="landing-depannage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
-        <img src="images-portfolio/site-elec.jpg" alt="Projet Bocage Élec Service" class="project-img">
-      </a>
-
-      <div class="project-content">
-        <div class="project-type">Site vitrine</div>
-
-        <h3>Bocage Élec Service</h3>
-
-        <p>
-          Réalisation d’un site vitrine fictif pour une entreprise d’électricité locale. L’objectif était de présenter les services
-          de façon claire, rassurante et accessible, tout en facilitant la prise de contact.
-        </p>
-
-        <p>
-          J’ai organisé le site autour d’une structure multi-pages afin de guider le visiteur : comprendre l’activité,
-          identifier les services proposés puis accéder rapidement aux informations de contact.
-        </p>
-
-        <p>
-          Ce projet m’a permis de travailler la logique d’un site vitrine professionnel : hiérarchie de l’information,
-          cohérence visuelle, navigation simple et conception orientée utilisateur.
-        </p>
-
-        <p><strong>Rôle :</strong> conception, structuration du contenu et intégration du site.</p>
-
-
-        <p><strong>Compétences mobilisées :</strong></p>
-        <ul>
-          <li>Structuration HTML.</li>
-          <li>Mise en page et design en CSS.</li>
-          <li>Création de navigation multi-pages.</li>
-          <li>Conception orientée utilisateur.</li>
-          <li>Organisation du parcours visiteur.</li>
-        </ul>
-
-        <p><strong>Technologies :</strong> HTML, CSS.</p>
-
-        <div class="project-actions">
-          <a href="landing-depannage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Voir le projet
-          </a>
-        </div>
-      </div>
-    </article>
-
-
-
-    <article class="project">
-      <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="project-image-link">
-        <img src="images-portfolio/garage.jpg" alt="Projet Garage du Bocage" class="project-img">
-      </a>
-
-      <div class="project-content">
-        <div class="project-type">Site vitrine</div>
-
-        <h3>Garage du Bocage</h3>
-
-        <p>
-          Création d’un site vitrine fictif pour un garage automobile, avec pour objectif de présenter une activité locale,
-          ses services et ses informations essentielles de manière simple et lisible.
-        </p>
-
-        <p>Premier projet réalisé en HTML/CSS pour comprendre les bases de la structure web et de la navigation multi-pages. 
-Il m’a permis de continuer à travailler la construction d’un site multi-pages, la cohérence graphique
-          et l’adaptation du contenu à un secteur précis. L’idée était de proposer une expérience claire pour un visiteur
-          qui cherche rapidement une information ou un contact.
-        </p>
-
-        <p><strong>Rôle :</strong> structuration, intégration HTML/CSS et mise en forme du parcours utilisateur.</p>
-
-        <div class="project-meta">
-          <strong>Outils :</strong> HTML, CSS.
-        </div>
-
-        <div class="project-actions">
-          <a href="projet-garage/index.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-            Voir le projet
-          </a>
-        </div>
-      </div>
-    </article>
   </section>
 
 
