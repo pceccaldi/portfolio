@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Systèmes, réseaux & sécurité - Pierre-François Ceccaldi</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0b1120;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 700;
+      color: #facc15;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #facc15;
+    }
+
+    .hero {
+      padding: 5rem 1.5rem 4rem;
+      background:
+        linear-gradient(rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.96)),
+        url("images-portfolio/systemes-reseaux-hero.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-content {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid rgba(250, 204, 21, 0.5);
+      color: #facc15;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      color: #f8fafc;
+      max-width: 850px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 1.15rem;
+      color: #cbd5e1;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .btn-primary:hover {
+      background: #eab308;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(203, 213, 225, 0.35);
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+      margin-bottom: 2rem;
+    }
+
+    .section-title span {
+      color: #facc15;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      color: #f8fafc;
+      margin-top: 0.4rem;
+    }
+
+    .intro-card {
+      background: #111827;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 18px;
+      padding: 2rem;
+    }
+
+    .intro-card p {
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .highlight-line {
+      margin-top: 1.5rem;
+      padding-left: 1rem;
+      border-left: 4px solid #facc15;
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .step {
+      background: #111827;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 16px;
+      padding: 1.3rem;
+    }
+
+    .step-number {
+      color: #facc15;
+      font-weight: 800;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .step h3 {
+      color: #f8fafc;
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      color: #cbd5e1;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 18px;
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      color: #facc15;
+      margin-bottom: 0.8rem;
+    }
+
+    .card li {
+      color: #cbd5e1;
+      margin-bottom: 0.35rem;
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+    }
+
+    .project {
+      background: #111827;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 1.7rem;
+    }
+
+    .project-type {
+      color: #facc15;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .project h3 {
+      color: #f8fafc;
+      margin-bottom: 0.7rem;
+    }
+
+    .project p {
+      color: #cbd5e1;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #111827;
+  background: #facc15;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+  background: #eab308;
+  transform: translateY(-2px);
+}
+
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      color: #fde68a;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, #111827, #1e293b);
+      border: 1px solid rgba(250, 204, 21, 0.25);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      color: #f8fafc;
+      margin-bottom: 1rem;
+    }
+
+    .contact-box p {
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #94a3b8;
+      border-top: 1px solid rgba(148, 163, 184, 0.15);
+    }
+
+    @media (max-width: 850px) {
+      .nav-container {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .project {
+        grid-template-columns: 1fr;
+      }
+
+      .project-image {
+        height: 220px;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="logo">Pierre-François Ceccaldi</a>
+
+      <div class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="#profil">Profil</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-content">
+      <div class="badge">Reconversion • Systèmes • Réseaux • Sécurité</div>
+
+      <h1>Vers les systèmes, réseaux et la cybersécurité</h1>
+
+      <p>
+        Technicien de maintenance en reconversion, je souhaite intégrer un Bachelor
+        Chef de Projet Systèmes, Réseaux & Sécurité afin d’évoluer vers les métiers
+        du support informatique, de l’administration système, du réseau et de la cybersécurité.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+        <a href="#contact" class="btn btn-secondary">Me contacter</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="profil">
+      <div class="section-title">
+        <span>Profil</span>
+        <h2>Un parcours technique orienté diagnostic</h2>
+      </div>
+
+      <div class="intro-card">
+        <p>
+          Mon expérience en maintenance m’a appris à analyser un dysfonctionnement,
+          rechercher une cause, intervenir avec méthode et respecter des procédures.
+          Cette logique terrain est directement transférable aux métiers de l’informatique :
+          comprendre un environnement, diagnostiquer un problème, tester une solution
+          et documenter l’intervention.
+        </p>
+
+        <p>
+          Aujourd’hui, je souhaite appliquer cette méthode aux systèmes, aux réseaux
+          et à la sécurité informatique, avec une approche progressive, rigoureuse
+          et orientée résolution de problèmes.
+        </p>
+
+        <div class="highlight-line">
+          Objectif : intégrer une alternance en lien avec le support informatique,
+          les systèmes, les réseaux ou la cybersécurité.
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
+        <span>Démarche</span>
+        <h2>Ma méthode de travail</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Observer</h3>
+          <p>Comprendre le contexte, identifier les symptômes et recueillir les informations utiles.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Diagnostiquer</h3>
+          <p>Rechercher les causes possibles, vérifier les hypothèses et prioriser les actions.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Corriger</h3>
+          <p>Appliquer une solution, tester le résultat et contrôler le bon fonctionnement.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">04</div>
+          <h3>Documenter</h3>
+          <p>Garder une trace claire des actions réalisées et des points à surveiller.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences">
+      <div class="section-title">
+        <span>Compétences</span>
+        <h2>Compétences en cours de développement</h2>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Systèmes & réseaux</h3>
+          <ul>
+            <li>Environnement Windows</li>
+            <li>Dépannage PC personnel</li>
+            <li>Notions IP / DNS / DHCP</li>
+            <li>Tests de connectivité réseau</li>
+            <li>Organisation de fichiers</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Sécurité & méthode</h3>
+          <ul>
+            <li>Respect des procédures</li>
+            <li>Bonnes pratiques de mots de passe</li>
+            <li>Mises à jour et sauvegardes</li>
+            <li>Sensibilisation cybersécurité</li>
+            <li>Documentation technique</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Gestion de projet</h3>
+          <ul>
+            <li>Organisation des étapes</li>
+            <li>Suivi d’avancement</li>
+            <li>Priorisation des actions</li>
+            <li>Communication technique</li>
+            <li>Notion / Trello / Excel</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="section-title">
+        <span>Projets</span>
+        <h2>Projets et expériences transférables</h2>
+      </div>
+
+      <article class="project">
+        <img
+          src="images-portfolio/diagnostic-technique.png"
+          alt="Illustration d'un diagnostic technique"
+          class="project-image"
+        >
+
+        <div class="project-content">
+          <div class="project-type">Projet technique</div>
+          <h3>Optimisation d’une ligne de production</h3>
+
+          <p>
+            Projet réalisé dans le cadre de mon parcours en maintenance : analyse d’un
+            dysfonctionnement, recherche des causes, suivi des actions correctives
+            et amélioration du fonctionnement global.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Diagnostic</span>
+            <span class="tag">Analyse de causes</span>
+            <span class="tag">Méthode</span>
+            <span class="tag">Amélioration continue</span>
+          </div>
+                      <a href="https://expansive-instance-686063.framer.app/"" class="project-link">Voir le projet</a>
+
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          src="images-portfolio/portfolio-github.png"
+          alt="Illustration d'un portfolio hébergé sur GitHub Pages"
+          class="project-image"
+        >
+
+        <div class="project-content">
+          <div class="project-type">Projet informatique personnel</div>
+          <h3>Portfolio personnel hébergé sur GitHub Pages</h3>
+
+          <p>
+            Création et mise en ligne d’un portfolio personnel en HTML/CSS.
+            Ce projet m’a permis de travailler l’organisation de fichiers, la structure
+            d’un site, la publication en ligne et l’autonomie dans l’apprentissage.
+          </p>
+
+          <div class="tags">
+            <span class="tag">HTML/CSS</span>
+            <span class="tag">GitHub Pages</span>
+            <span class="tag">Organisation</span>
+            <span class="tag">Autonomie</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <img
+          src="images-portfolio/reseau-securite.png"
+          alt="Illustration réseau et cybersécurité"
+          class="project-image"
+        >
+
+        <div class="project-content">
+          <div class="project-type">Apprentissage personnel</div>
+          <h3>Bases systèmes, réseaux et sécurité</h3>
+
+          <p>
+            Travail personnel autour des bases réseau et système : environnement Windows,
+            notions IP/DNS/DHCP, tests de connectivité, bonnes pratiques de sécurité,
+            mots de passe, mises à jour et sauvegardes.
+          </p>
+
+          <div class="tags">
+            <span class="tag">Windows</span>
+            <span class="tag">Réseau</span>
+            <span class="tag">Sécurité</span>
+            <span class="tag">Bonnes pratiques</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <h2>Me contacter</h2>
+
+        <p>
+          Je recherche une alternance dans le cadre d’un Bachelor Chef de Projet
+          Systèmes, Réseaux & Sécurité.
+        </p>
+
+        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
+          Envoyer un mail
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Pierre-François Ceccaldi — Portfolio personnel
+  </footer>
+
+</body>
+</html>
