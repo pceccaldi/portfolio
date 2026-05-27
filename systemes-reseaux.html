@@ -3,11 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio BTS SIO option SISR de Pierre-François Ceccaldi — support informatique, systèmes et réseaux." />
 
-  <title>Systèmes, réseaux & sécurité - Pierre-François Ceccaldi</title>
+  <title>Pierre-François Ceccaldi — BTS SIO SISR</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
+    :root {
+      --bg: #060810;
+      --bg-2: #0d1117;
+      --bg-3: #111823;
+      --accent: #00e5ff;
+      --accent-2: #7b5cfa;
+      --accent-glow: rgba(0, 229, 255, 0.15);
+      --text: #f0f4ff;
+      --muted: #7a8ba8;
+      --border: rgba(255,255,255,0.07);
+      --mono: 'Space Mono', monospace;
+      --sans: 'Sora', 'Segoe UI', Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -18,10 +35,11 @@
     }
 
     body {
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #0b1120;
-      color: #e5e7eb;
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -29,587 +47,1005 @@
       color: inherit;
     }
 
+    ::selection {
+      background: rgba(0, 229, 255, 0.28);
+    }
+
+    /* NAVIGATION */
     nav {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      z-index: 100;
+      background: rgba(6, 8, 16, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-container {
-      max-width: 1100px;
+    .nav-inner {
+      max-width: 1120px;
       margin: auto;
-      padding: 1rem 1.5rem;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1.5rem;
     }
 
     .logo {
-      font-weight: 700;
-      color: #facc15;
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--muted);
     }
 
     .nav-links {
       display: flex;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav-links a {
-      color: #cbd5e1;
-      font-size: 0.95rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: #facc15;
+      color: var(--accent);
     }
 
+    /* HERO */
     .hero {
-      padding: 5rem 1.5rem 4rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       background:
-        linear-gradient(rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.96)),
+        linear-gradient(90deg, rgba(6, 8, 16, 0.96), rgba(6, 8, 16, 0.82) 48%, rgba(6, 8, 16, 0.97)),
+        radial-gradient(ellipse 60% 50% at 72% 38%, rgba(0, 229, 255, 0.13) 0%, transparent 72%),
+        radial-gradient(ellipse 40% 60% at 18% 72%, rgba(123, 92, 250, 0.12) 0%, transparent 70%),
         url("images-portfolio/systemes-reseaux-hero.png");
       background-size: cover;
       background-position: center;
     }
 
-    .hero-content {
-      max-width: 1100px;
-      margin: auto;
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 0.4rem 0.8rem;
-      border: 1px solid rgba(250, 204, 21, 0.5);
-      color: #facc15;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      margin-bottom: 1.2rem;
-      background: rgba(15, 23, 42, 0.7);
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 0%, rgba(6, 8, 16, 0.42) 100%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      width: 100%;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      background: rgba(0, 229, 255, 0.06);
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      margin-bottom: 1.6rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag::before {
+      content: '//';
+      opacity: 0.5;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-      color: #f8fafc;
-      max-width: 850px;
+      font-size: clamp(2.6rem, 5.5vw, 4.4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.6s 0.1s ease both;
     }
 
-    .hero p {
-      max-width: 760px;
-      font-size: 1.15rem;
-      color: #cbd5e1;
-      margin-bottom: 2rem;
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-actions {
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 590px;
+      margin-bottom: 2.4rem;
+      font-weight: 300;
+      line-height: 1.8;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 1.2rem;
-      border-radius: 10px;
-      font-weight: 600;
-      transition: transform 0.2s ease, background 0.2s ease;
+    .btn-main,
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 6px;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
 
-    .btn-primary {
-      background: #facc15;
-      color: #111827;
+    .btn-main {
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.9rem 1.6rem;
     }
 
-    .btn-primary:hover {
-      background: #eab308;
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 24px rgba(0, 229, 255, 0.35);
     }
 
-    .btn-secondary {
-      border: 1px solid rgba(203, 213, 225, 0.35);
-      color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.55);
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.9rem 1.6rem;
+      background: rgba(6, 8, 16, 0.34);
     }
 
-    .btn:hover {
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: var(--text);
       transform: translateY(-2px);
     }
 
-    section {
-      max-width: 1100px;
+    /* TERMINAL CARD */
+    .terminal {
+      background: rgba(13, 17, 23, 0.92);
+      border: 1px solid rgba(0, 229, 255, 0.18);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(0, 229, 255, 0.07);
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.2rem;
+      background: rgba(255,255,255,0.04);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .dot-r { background: #ff5f56; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #27c93f; }
+
+    .terminal-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: 0.4rem;
+    }
+
+    .terminal-body {
+      padding: 1.4rem 1.6rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 2;
+    }
+
+    .t-comment { color: #3c5071; }
+    .t-key { color: var(--accent-2); }
+    .t-val { color: var(--accent); }
+    .t-str { color: #7ec89a; }
+
+    .t-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: var(--accent);
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* BASE SECTIONS */
+    .section {
+      max-width: 1120px;
       margin: auto;
-      padding: 4rem 1.5rem;
+      padding: 5rem 2rem;
     }
 
-    .section-title {
-      margin-bottom: 2rem;
-    }
-
-    .section-title span {
-      color: #facc15;
-      font-weight: 700;
+    .label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
     }
 
-    .section-title h2 {
-      font-size: 2rem;
-      color: #f8fafc;
-      margin-top: 0.4rem;
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2.5rem;
     }
 
-    .intro-card {
-      background: #111827;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 18px;
-      padding: 2rem;
+    .sep {
+      max-width: 1120px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
     }
 
-    .intro-card p {
-      color: #cbd5e1;
-      margin-bottom: 1rem;
+    /* PROFIL */
+    .profil-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
 
-    .highlight-line {
-      margin-top: 1.5rem;
-      padding-left: 1rem;
-      border-left: 4px solid #facc15;
-      color: #e5e7eb;
+    .profil-card,
+    .skill-card,
+    .step,
+    .proj-card,
+    .contact-wrap {
+      background: rgba(13, 17, 23, 0.92);
+      border: 1px solid var(--border);
+    }
+
+    .profil-card {
+      border-radius: 14px;
+      padding: 1.8rem;
+    }
+
+    .profil-card p {
+      color: var(--muted);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .profil-card strong {
+      color: var(--text);
       font-weight: 600;
     }
 
-    .steps {
+    .highlight-bar {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(123, 92, 250, 0.06));
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      border-radius: 10px;
+      padding: 1.4rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .highlight-bar::before {
+      content: '→';
+      font-size: 1.4rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .highlight-bar p {
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* METHODE */
+    .steps-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
 
     .step {
-      background: #111827;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 16px;
-      padding: 1.3rem;
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
     }
 
-    .step-number {
-      color: #facc15;
-      font-weight: 800;
-      font-size: 1.4rem;
-      margin-bottom: 0.5rem;
+    .step:hover {
+      border-color: rgba(0, 229, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .step-num {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
     }
 
     .step h3 {
-      color: #f8fafc;
+      font-size: 1.05rem;
+      font-weight: 700;
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
 
     .step p {
-      color: #cbd5e1;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    .grid {
+    .step::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .step:hover::after {
+      opacity: 1;
+    }
+
+    /* COMPETENCES */
+    .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
 
-    .card {
-      background: #111827;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 18px;
-      padding: 1.5rem;
+    .skill-card {
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card h3 {
-      color: #facc15;
-      margin-bottom: 0.8rem;
+    .skill-card:hover {
+      border-color: rgba(0, 229, 255, 0.25);
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
     }
 
-    .card li {
-      color: #cbd5e1;
-      margin-bottom: 0.35rem;
+    .skill-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(123, 92, 250, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.1rem;
     }
 
-    .card ul {
-      padding-left: 1.2rem;
+    .skill-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
     }
 
-    .project {
-      background: #111827;
-      border: 1px solid rgba(148, 163, 184, 0.2);
-      border-radius: 18px;
+    .skill-items {
+      list-style: none;
+    }
+
+    .skill-items li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-items li:last-child {
+      border-bottom: none;
+    }
+
+    .skill-items li::before {
+      content: '▸';
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* PROJETS */
+    .projects {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .proj-card {
+      border-radius: 16px;
       overflow: hidden;
-      margin-bottom: 1.5rem;
       display: grid;
-      grid-template-columns: 300px 1fr;
+      grid-template-columns: 280px 1fr;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
-    .project-image {
+    .proj-card:hover {
+      border-color: rgba(0, 229, 255, 0.2);
+      box-shadow: 0 0 40px rgba(0, 229, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .proj-img-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-3);
+    }
+
+    .proj-img {
       width: 100%;
       height: 100%;
-      min-height: 240px;
+      min-height: 220px;
       object-fit: cover;
+      filter: brightness(0.75) saturate(0.9);
+      transition: filter 0.3s ease, transform 0.4s ease;
     }
 
-    .project-content {
-      padding: 1.7rem;
+    .proj-card:hover .proj-img {
+      filter: brightness(0.9) saturate(1.1);
+      transform: scale(1.04);
     }
 
-    .project-type {
-      color: #facc15;
-      font-size: 0.9rem;
-      font-weight: 700;
+    .proj-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(123, 92, 250, 0.1));
+      pointer-events: none;
+    }
+
+    .proj-body {
+      padding: 2rem;
+    }
+
+    .proj-type {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-
-    .project h3 {
-      color: #f8fafc;
       margin-bottom: 0.7rem;
     }
 
-    .project p {
-      color: #cbd5e1;
-      margin-bottom: 1rem;
+    .proj-body h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--text);
     }
 
-    .project-link {
-  display: inline-block;
-  margin-top: 1rem;
-  color: #111827;
-  background: #facc15;
-  padding: 0.65rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.project-link:hover {
-  background: #eab308;
-  transform: translateY(-2px);
-}
+    .proj-body p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
 
     .tags {
       display: flex;
-      gap: 0.5rem;
       flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .tag {
-      background: rgba(250, 204, 21, 0.12);
-      border: 1px solid rgba(250, 204, 21, 0.35);
-      color: #fde68a;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      background: rgba(0, 229, 255, 0.07);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      color: var(--accent);
+      padding: 0.25rem 0.7rem;
+      border-radius: 4px;
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.85rem;
+      font-weight: 700;
+      color: #000;
+      background: var(--accent);
+      padding: 0.65rem 1.2rem;
+      border-radius: 6px;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
 
-    .contact-box {
-      background: linear-gradient(135deg, #111827, #1e293b);
-      border: 1px solid rgba(250, 204, 21, 0.25);
+    .proj-link:hover {
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* CONTACT */
+    .contact-wrap {
+      border: 1px solid rgba(0, 229, 255, 0.2);
       border-radius: 20px;
-      padding: 2rem;
+      padding: 3.5rem 2rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .contact-box h2 {
-      color: #f8fafc;
+    .contact-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(0, 229, 255, 0.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-wrap > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-wrap h2 {
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
 
-    .contact-box p {
-      color: #cbd5e1;
-      margin-bottom: 1.5rem;
+    .contact-wrap p {
+      color: var(--muted);
+      max-width: 520px;
+      margin: auto;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
     footer {
       text-align: center;
-      padding: 2rem 1rem;
-      color: #94a3b8;
-      border-top: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 2rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
 
-    @media (max-width: 850px) {
-      .nav-container {
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-inner {
         align-items: flex-start;
         flex-direction: column;
-        gap: 1rem;
       }
 
-      .grid,
-      .steps {
+      .nav-links {
+        justify-content: flex-start;
+        gap: 1.1rem;
+      }
+
+      .hero-inner {
         grid-template-columns: 1fr;
       }
 
-      .project {
+      .terminal {
+        display: none;
+      }
+
+      .profil-grid,
+      .skills-grid,
+      .steps-row {
         grid-template-columns: 1fr;
       }
 
-      .project-image {
-        height: 220px;
+      .highlight-bar {
+        grid-column: 1;
       }
 
+      .proj-card {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-img {
+        min-height: 200px;
+      }
+    }
+
+    @media (max-width: 560px) {
       .hero {
-        padding-top: 4rem;
+        min-height: auto;
+        padding: 5rem 1.2rem 3rem;
+      }
+
+      .section {
+        padding: 4rem 1.2rem;
+      }
+
+      .nav-inner {
+        padding: 1rem 1.2rem;
+      }
+
+      .nav-links a {
+        font-size: 0.78rem;
+      }
+
+      .btn-main,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
 
 <body>
-
   <nav>
-    <div class="nav-container">
-      <a href="index.html" class="logo">Pierre-François Ceccaldi</a>
+    <div class="nav-inner">
+      <a href="index.html" class="logo">PF<span>.</span>Ceccaldi</a>
 
       <div class="nav-links">
-        <a href="index.html">Accueil</a>
         <a href="#profil">Profil</a>
         <a href="#competences">Compétences</a>
         <a href="#projets">Projets</a>
         <a href="#contact">Contact</a>
+        <a href="CV_Pierre-Francois_Ceccaldi_BTS_SIO.pdf" target="_blank" rel="noopener noreferrer">CV</a>
       </div>
     </div>
   </nav>
 
   <header class="hero">
-    <div class="hero-content">
-      <div class="badge">Reconversion • Systèmes • Réseaux • Sécurité</div>
+    <div class="hero-bg"></div>
 
-      <h1>Vers les systèmes, réseaux et la cybersécurité</h1>
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag">Candidature BTS SIO — option SISR</div>
 
-      <p>
-        Technicien de maintenance en reconversion, je souhaite intégrer un Bachelor
-        Chef de Projet Systèmes, Réseaux & Sécurité afin d’évoluer vers les métiers
-        du support informatique, de l’administration système, du réseau et de la cybersécurité.
-      </p>
+        <h1>Support, <em>systèmes</em><br>& réseaux.</h1>
 
-      <div class="hero-actions">
-        <a href="#projets" class="btn btn-primary">Voir mes projets</a>
-        <a href="#contact" class="btn btn-secondary">Me contacter</a>
+        <p class="hero-desc">
+          Technicien de maintenance en reconversion vers l'informatique. Je prépare un BTS SIO option SISR
+          et recherche une alternance en support informatique, systèmes et réseaux — avec une méthode de diagnostic
+          déjà éprouvée sur le terrain.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projets" class="btn-main">Voir mes projets →</a>
+          <a href="CV_Pierre-Francois_Ceccaldi_BTS_SIO.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost">Consulter mon CV</a>
+          <a href="#contact" class="btn-ghost">Me contacter</a>
+        </div>
+      </div>
+
+      <div class="terminal" aria-hidden="true">
+        <div class="terminal-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="terminal-title">profil.json</span>
+        </div>
+
+        <div class="terminal-body">
+          <div class="t-comment">// Pierre-François Ceccaldi</div>
+          <br>
+          <div><span class="t-key">nom</span>: <span class="t-str">"Pierre-François"</span>,</div>
+          <div><span class="t-key">formation</span>: <span class="t-str">"BTS SIO SISR"</span>,</div>
+          <div><span class="t-key">statut</span>: <span class="t-str">"Candidat alternance"</span>,</div>
+          <div><span class="t-key">profil</span>: <span class="t-str">"Maintenance → IT"</span>,</div>
+          <br>
+          <div><span class="t-key">compétences</span>: [</div>
+          <div>&nbsp;&nbsp;<span class="t-val">"Support utilisateur"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-val">"Windows / Réseau"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-val">"Diagnostic méthode"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="t-val">"Documentation"</span></div>
+          <div>],</div>
+          <br>
+          <div><span class="t-key">cv</span>: <span class="t-str">"CV BTS SIO"</span>,</div>
+          <div><span class="t-key">disponible</span>: <span class="t-val">true</span> <span class="t-cursor"></span></div>
+        </div>
       </div>
     </div>
   </header>
 
   <main>
+    <section class="section" id="profil">
+      <div class="label">// 01 — Profil</div>
+      <h2>Un diagnostic terrain,<br>transféré à l'informatique.</h2>
 
-    <section id="profil">
-      <div class="section-title">
-        <span>Profil</span>
-        <h2>Un parcours technique orienté diagnostic</h2>
-      </div>
+      <div class="profil-grid">
+        <div class="profil-card">
+          <p>
+            Mon expérience en maintenance m'a appris à <strong>analyser un dysfonctionnement</strong>,
+            rechercher une cause, intervenir avec méthode et respecter des procédures strictes.
+            Cette logique terrain est directement applicable aux métiers de l'IT : comprendre
+            un environnement, diagnostiquer un problème, tester une solution et documenter l'intervention.
+          </p>
+        </div>
 
-      <div class="intro-card">
-        <p>
-          Mon expérience en maintenance m’a appris à analyser un dysfonctionnement,
-          rechercher une cause, intervenir avec méthode et respecter des procédures.
-          Cette logique terrain est directement transférable aux métiers de l’informatique :
-          comprendre un environnement, diagnostiquer un problème, tester une solution
-          et documenter l’intervention.
-        </p>
+        <div class="profil-card">
+          <p>
+            Aujourd'hui, j'applique cette méthode au <strong>support informatique</strong>,
+            aux postes de travail, aux systèmes et aux réseaux. J'apprends avec rigueur,
+            en autonomie, avec une progression documentée et orientée résolution de problèmes.
+          </p>
+        </div>
 
-        <p>
-          Aujourd’hui, je souhaite appliquer cette méthode aux systèmes, aux réseaux
-          et à la sécurité informatique, avec une approche progressive, rigoureuse
-          et orientée résolution de problèmes.
-        </p>
-
-        <div class="highlight-line">
-          Objectif : intégrer une alternance en lien avec le support informatique,
-          les systèmes, les réseaux ou la cybersécurité.
+        <div class="highlight-bar">
+          <p>
+            Objectif : intégrer une alternance BTS SIO option SISR — missions de support utilisateur,
+            assistance informatique, maintenance de postes, systèmes et réseaux.
+          </p>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="section-title">
-        <span>Démarche</span>
-        <h2>Ma méthode de travail</h2>
-      </div>
+    <div class="sep"></div>
 
-      <div class="steps">
+    <section class="section">
+      <div class="label">// 02 — Méthode</div>
+      <h2>Une démarche en 4 étapes.</h2>
+
+      <div class="steps-row">
         <div class="step">
-          <div class="step-number">01</div>
+          <div class="step-num">ÉTAPE_01</div>
           <h3>Observer</h3>
           <p>Comprendre le contexte, identifier les symptômes et recueillir les informations utiles.</p>
         </div>
 
         <div class="step">
-          <div class="step-number">02</div>
+          <div class="step-num">ÉTAPE_02</div>
           <h3>Diagnostiquer</h3>
           <p>Rechercher les causes possibles, vérifier les hypothèses et prioriser les actions.</p>
         </div>
 
         <div class="step">
-          <div class="step-number">03</div>
+          <div class="step-num">ÉTAPE_03</div>
           <h3>Corriger</h3>
           <p>Appliquer une solution, tester le résultat et contrôler le bon fonctionnement.</p>
         </div>
 
         <div class="step">
-          <div class="step-number">04</div>
+          <div class="step-num">ÉTAPE_04</div>
           <h3>Documenter</h3>
           <p>Garder une trace claire des actions réalisées et des points à surveiller.</p>
         </div>
       </div>
     </section>
 
-    <section id="competences">
-      <div class="section-title">
-        <span>Compétences</span>
-        <h2>Compétences en cours de développement</h2>
-      </div>
+    <div class="sep"></div>
 
-      <div class="grid">
-        <div class="card">
+    <section class="section" id="competences">
+      <div class="label">// 03 — Compétences</div>
+      <h2>Compétences en cours de développement.</h2>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🖥️</div>
+          <h3>Support informatique</h3>
+          <ul class="skill-items">
+            <li>Diagnostic matériel et logiciel</li>
+            <li>Dépannage environnement Windows</li>
+            <li>Assistance utilisateur</li>
+            <li>Installation et configuration de postes</li>
+            <li>Tests de connectivité</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">🌐</div>
           <h3>Systèmes & réseaux</h3>
-          <ul>
+          <ul class="skill-items">
             <li>Environnement Windows</li>
-            <li>Dépannage PC personnel</li>
             <li>Notions IP / DNS / DHCP</li>
-            <li>Tests de connectivité réseau</li>
-            <li>Organisation de fichiers</li>
+            <li>Connexion Ethernet / Wi-Fi</li>
+            <li>Partage de fichiers et périphériques</li>
+            <li>Bases de sécurité informatique</li>
           </ul>
         </div>
 
-        <div class="card">
-          <h3>Sécurité & méthode</h3>
-          <ul>
+        <div class="skill-card">
+          <div class="skill-icon">⚙️</div>
+          <h3>Méthode & outils</h3>
+          <ul class="skill-items">
+            <li>Recherche de causes</li>
             <li>Respect des procédures</li>
-            <li>Bonnes pratiques de mots de passe</li>
-            <li>Mises à jour et sauvegardes</li>
-            <li>Sensibilisation cybersécurité</li>
             <li>Documentation technique</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Gestion de projet</h3>
-          <ul>
-            <li>Organisation des étapes</li>
-            <li>Suivi d’avancement</li>
-            <li>Priorisation des actions</li>
-            <li>Communication technique</li>
-            <li>Notion / Trello / Excel</li>
+            <li>Priorisation des interventions</li>
+            <li>GitHub / Excel / Notion / Trello</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <section id="projets">
-      <div class="section-title">
-        <span>Projets</span>
-        <h2>Projets et expériences transférables</h2>
+    <div class="sep"></div>
+
+    <section class="section" id="projets">
+      <div class="label">// 04 — Projets</div>
+      <h2>Expériences utiles au BTS SIO.</h2>
+
+      <div class="projects">
+        <article class="proj-card">
+          <div class="proj-img-wrap">
+            <img src="images-portfolio/diagnostic-technique.png" alt="Diagnostic technique" class="proj-img">
+            <div class="proj-img-overlay"></div>
+          </div>
+
+          <div class="proj-body">
+            <div class="proj-type">// Projet technique</div>
+            <h3>Diagnostic et amélioration d'un équipement</h3>
+            <p>
+              Issu de mon parcours en maintenance : analyse d'un dysfonctionnement, recherche
+              des causes, suivi des actions correctives et contrôle du résultat. Cette démarche est
+              directement transférable au support informatique : analyser, tester, corriger, documenter.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Diagnostic</span>
+              <span class="tag">Analyse de causes</span>
+              <span class="tag">Méthode</span>
+              <span class="tag">Résolution</span>
+            </div>
+
+            <a href="https://expansive-instance-686063.framer.app/" target="_blank" rel="noopener noreferrer" class="proj-link">
+              Voir le projet →
+            </a>
+          </div>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-img-wrap">
+            <img src="images-portfolio/portfolio-github.png" alt="Portfolio GitHub Pages" class="proj-img">
+            <div class="proj-img-overlay"></div>
+          </div>
+
+          <div class="proj-body">
+            <div class="proj-type">// Projet informatique personnel</div>
+            <h3>Portfolio hébergé sur GitHub Pages</h3>
+            <p>
+              Création et mise en ligne d'un portfolio en HTML/CSS. Organisation de fichiers,
+              structure d'un site, publication en ligne et apprentissage en autonomie.
+            </p>
+
+            <div class="tags">
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">GitHub Pages</span>
+              <span class="tag">Organisation</span>
+              <span class="tag">Autonomie</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj-card">
+          <div class="proj-img-wrap">
+            <img src="images-portfolio/reseau-securite.png" alt="Réseaux et sécurité" class="proj-img">
+            <div class="proj-img-overlay"></div>
+          </div>
+
+          <div class="proj-body">
+            <div class="proj-type">// Apprentissage personnel</div>
+            <h3>Bases systèmes, réseaux et sécurité</h3>
+            <p>
+              Travail personnel autour des fondamentaux BTS SIO SISR : Windows, IP/DNS/DHCP,
+              tests de connectivité, gestion des accès, bonnes pratiques de sécurité,
+              sauvegardes et documentation technique.
+            </p>
+
+            <div class="tags">
+              <span class="tag">Windows</span>
+              <span class="tag">Réseau</span>
+              <span class="tag">Sécurité</span>
+              <span class="tag">Bonnes pratiques</span>
+            </div>
+          </div>
+        </article>
       </div>
-
-      <article class="project">
-        <img
-          src="images-portfolio/diagnostic-technique.png"
-          alt="Illustration d'un diagnostic technique"
-          class="project-image"
-        >
-
-        <div class="project-content">
-          <div class="project-type">Projet technique</div>
-          <h3>Optimisation d’une ligne de production</h3>
-
-          <p>
-            Projet réalisé dans le cadre de mon parcours en maintenance : analyse d’un
-            dysfonctionnement, recherche des causes, suivi des actions correctives
-            et amélioration du fonctionnement global.
-          </p>
-
-          <div class="tags">
-            <span class="tag">Diagnostic</span>
-            <span class="tag">Analyse de causes</span>
-            <span class="tag">Méthode</span>
-            <span class="tag">Amélioration continue</span>
-          </div>
-                      <a href="https://expansive-instance-686063.framer.app/"" class="project-link">Voir le projet</a>
-
-        </div>
-      </article>
-
-      <article class="project">
-        <img
-          src="images-portfolio/portfolio-github.png"
-          alt="Illustration d'un portfolio hébergé sur GitHub Pages"
-          class="project-image"
-        >
-
-        <div class="project-content">
-          <div class="project-type">Projet informatique personnel</div>
-          <h3>Portfolio personnel hébergé sur GitHub Pages</h3>
-
-          <p>
-            Création et mise en ligne d’un portfolio personnel en HTML/CSS.
-            Ce projet m’a permis de travailler l’organisation de fichiers, la structure
-            d’un site, la publication en ligne et l’autonomie dans l’apprentissage.
-          </p>
-
-          <div class="tags">
-            <span class="tag">HTML/CSS</span>
-            <span class="tag">GitHub Pages</span>
-            <span class="tag">Organisation</span>
-            <span class="tag">Autonomie</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="project">
-        <img
-          src="images-portfolio/reseau-securite.png"
-          alt="Illustration réseau et cybersécurité"
-          class="project-image"
-        >
-
-        <div class="project-content">
-          <div class="project-type">Apprentissage personnel</div>
-          <h3>Bases systèmes, réseaux et sécurité</h3>
-
-          <p>
-            Travail personnel autour des bases réseau et système : environnement Windows,
-            notions IP/DNS/DHCP, tests de connectivité, bonnes pratiques de sécurité,
-            mots de passe, mises à jour et sauvegardes.
-          </p>
-
-          <div class="tags">
-            <span class="tag">Windows</span>
-            <span class="tag">Réseau</span>
-            <span class="tag">Sécurité</span>
-            <span class="tag">Bonnes pratiques</span>
-          </div>
-        </div>
-      </article>
     </section>
 
-    <section id="contact">
-      <div class="contact-box">
-        <h2>Me contacter</h2>
+    <div class="sep"></div>
 
+    <section class="section" id="contact">
+      <div class="contact-wrap">
+        <div class="label" style="text-align:center; margin-bottom:0.8rem;">// 05 — Contact</div>
+        <h2>Disponible pour une alternance.</h2>
         <p>
-          Je recherche une alternance dans le cadre d’un Bachelor Chef de Projet
-          Systèmes, Réseaux & Sécurité.
+          Je recherche une alternance dans le cadre d'un BTS SIO option SISR,
+          orientée support informatique, systèmes et réseaux.
         </p>
 
-        <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn btn-primary">
-          Envoyer un mail
-        </a>
+        <div class="contact-actions">
+          <a href="CV_Pierre-Francois_Ceccaldi_BTS_SIO.pdf" target="_blank" rel="noopener noreferrer" class="btn-main">
+            Consulter mon CV →
+          </a>
+
+          <a href="mailto:ceccaldi.pierre-francois@hotmail.com" class="btn-ghost">
+            Envoyer un mail
+          </a>
+
+          <a href="https://www.linkedin.com/in/pierre-fran%C3%A7ois-ceccaldi" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+            Voir mon LinkedIn
+          </a>
+        </div>
       </div>
     </section>
-
   </main>
 
   <footer>
-    © 2026 Pierre-François Ceccaldi — Portfolio personnel
+    © 2026 Pierre-François Ceccaldi — Portfolio BTS SIO SISR
   </footer>
-
 </body>
 </html>
