@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projet systèmes — Procédure d'installation de Windows 10 dans VirtualBox, avec incident réel documenté. Portfolio BTS SIO SISR de Pierre-François Ceccaldi." />
+  <title>Installation Windows VM — PF.Ceccaldi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060810;
+      --bg-2: #0d1117;
+      --bg-3: #111823;
+      --accent: #00e5ff;
+      --accent-2: #7b5cfa;
+      --text: #f0f4ff;
+      --muted: #7a8ba8;
+      --border: rgba(255,255,255,0.07);
+      --mono: 'Space Mono', monospace;
+      --sans: 'Sora', 'Segoe UI', Arial, sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ::selection { background: rgba(0, 229, 255, 0.28); }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(6, 8, 16, 0.86); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1120px; margin: auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .logo { font-family: var(--mono); font-size: 0.95rem; color: var(--accent); letter-spacing: 0.02em; white-space: nowrap; }
+    .logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { font-size: 0.86rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero-proj { max-width: 1120px; margin: auto; padding: 5rem 2rem 3rem; }
+    .breadcrumb { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .breadcrumb a { color: var(--accent); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(0, 229, 255, 0.06); padding: 0.4rem 0.9rem; border-radius: 4px; margin-bottom: 1.6rem; }
+    .hero-tag::before { content: '//'; opacity: 0.5; }
+    h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1.4rem; }
+    h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 620px; margin-bottom: 2rem; font-weight: 300; line-height: 1.8; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-family: var(--mono); font-size: 0.75rem; background: rgba(0, 229, 255, 0.07); border: 1px solid rgba(0, 229, 255, 0.2); color: var(--accent); padding: 0.25rem 0.7rem; border-radius: 4px; }
+
+    .section { max-width: 1120px; margin: auto; padding: 3.5rem 2rem; }
+    .label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.6rem; }
+    .section > p { color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 1rem; }
+    .section > p strong { color: var(--text); font-weight: 600; }
+    .sep { max-width: 1120px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    code.inline { font-family: var(--mono); font-size: 0.85em; background: rgba(0, 229, 255, 0.07); border: 1px solid rgba(0, 229, 255, 0.2); color: var(--accent); padding: 0.1rem 0.45rem; border-radius: 4px; }
+
+    .highlight-bar { background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(123, 92, 250, 0.06)); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 10px; padding: 1.4rem 1.8rem; display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .highlight-bar::before { content: '→'; font-size: 1.4rem; color: var(--accent); flex-shrink: 0; line-height: 1.4; }
+    .highlight-bar p { color: var(--text); font-weight: 600; line-height: 1.6; margin: 0; }
+    .highlight-bar p strong { color: var(--accent); }
+
+    .specs-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; background: rgba(13, 17, 23, 0.92); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .specs-table th { font-family: var(--mono); color: var(--accent); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.9rem 1.1rem; text-align: left; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .specs-table td { padding: 0.8rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+    .specs-table tr:last-child td { border-bottom: none; }
+    .specs-table td:first-child { color: var(--text); font-weight: 600; }
+    .specs-table td:nth-child(2) { font-family: var(--mono); color: var(--accent); font-size: 0.8rem; }
+
+    .procedure { display: flex; flex-direction: column; margin: 1.6rem 0 0; }
+    .proc-step { display: grid; grid-template-columns: 52px 1fr; }
+    .proc-num-col { display: flex; flex-direction: column; align-items: center; }
+    .proc-num { width: 38px; height: 38px; border-radius: 50%; background: rgba(0, 229, 255, 0.06); border: 1.5px solid var(--accent); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 0.8rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .proc-line { width: 1.5px; background: linear-gradient(180deg, rgba(0,229,255,0.35), rgba(123,92,250,0.2)); flex: 1; min-height: 16px; }
+    .proc-step:last-child .proc-line { display: none; }
+    .proc-content { padding: 0.3rem 0 2.2rem 1.2rem; }
+    .proc-content h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text); }
+    .proc-content p { font-size: 0.92rem; color: var(--muted); margin-bottom: 0.7rem; line-height: 1.8; font-weight: 300; }
+    .proc-content p strong { color: var(--text); font-weight: 600; }
+    .proc-content ul { list-style: none; margin-bottom: 0.7rem; }
+    .proc-content ul li { font-size: 0.9rem; color: var(--muted); padding: 0.25rem 0; display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 300; }
+    .proc-content ul li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; line-height: 1.9; flex-shrink: 0; }
+    .proc-content ul li strong { color: var(--text); font-weight: 600; }
+
+    .warn-box { background: rgba(255, 189, 46, 0.05); border: 1px solid rgba(255, 189, 46, 0.3); border-radius: 8px; padding: 0.9rem 1.2rem; margin: 0.8rem 0; display: flex; gap: 0.7rem; align-items: flex-start; }
+    .warn-box .ico { flex-shrink: 0; line-height: 1.6; }
+    .warn-box p { font-size: 0.84rem; color: #d9b96a; margin: 0; line-height: 1.7; font-weight: 300; }
+
+    .tip-box { background: rgba(0, 229, 255, 0.04); border: 1px solid rgba(0, 229, 255, 0.25); border-radius: 8px; padding: 0.9rem 1.2rem; margin: 0.8rem 0; display: flex; gap: 0.7rem; align-items: flex-start; }
+    .tip-box .ico { flex-shrink: 0; line-height: 1.6; }
+    .tip-box p { font-size: 0.84rem; color: var(--accent); margin: 0; line-height: 1.7; font-weight: 300; }
+    .tip-box p strong { font-weight: 700; }
+
+    figure.capture { margin: 1rem 0; }
+    figure.capture img { display: block; width: 100%; border: 1px solid rgba(0, 229, 255, 0.18); border-radius: 12px; box-shadow: 0 0 40px rgba(0, 229, 255, 0.05); }
+    figure.capture figcaption { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); margin-top: 0.5rem; text-align: center; }
+
+    .terminal { background: rgba(13, 17, 23, 0.92); border: 1px solid rgba(226, 75, 74, 0.35); border-radius: 12px; overflow: hidden; margin: 1.4rem 0; }
+    .terminal-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.2rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--border); }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
+    .terminal-title { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-left: 0.4rem; }
+    .terminal-body { padding: 1.4rem 1.6rem; font-family: var(--mono); font-size: 0.78rem; line-height: 1.9; overflow-x: auto; }
+    .t-err { color: #f08a8a; }
+    .t-comment { color: #3c5071; }
+    .t-white { color: var(--text); }
+
+    .incident-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 1.6rem 0; }
+    .inc-step { background: rgba(13, 17, 23, 0.92); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem; }
+    .inc-step .inc-label { font-family: var(--mono); font-size: 0.68rem; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    .inc-step h4 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+    .inc-step p { font-size: 0.82rem; color: var(--muted); line-height: 1.7; font-weight: 300; margin: 0; }
+
+    .conclusion { background: rgba(13, 17, 23, 0.92); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 14px; padding: 1.8rem; }
+    .conclusion h3 { font-size: 1.05rem; margin-bottom: 1rem; color: var(--accent); font-weight: 700; }
+    .conclusion ul { list-style: none; }
+    .conclusion ul li { font-size: 0.9rem; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 300; }
+    .conclusion ul li:last-child { border-bottom: none; }
+    .conclusion ul li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; line-height: 1.9; }
+
+    .back-wrap { max-width: 1120px; margin: auto; padding: 0 2rem 4rem; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; padding: 0.9rem 1.6rem; background: rgba(6, 8, 16, 0.34); border-radius: 6px; letter-spacing: 0.03em; transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); transform: translateY(-2px); }
+
+    footer { text-align: center; padding: 2rem; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 900px) {
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; gap: 1.1rem; }
+      .incident-steps { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 3rem 1.2rem; }
+      .hero-proj { padding: 4rem 1.2rem 2.5rem; }
+      .nav-inner { padding: 1rem 1.2rem; }
+      .proc-step { grid-template-columns: 44px 1fr; }
+      .specs-table { font-size: 0.8rem; }
+      .incident-steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="systemes-reseaux.html">PF<span>.</span>Ceccaldi</a>
+    <div class="nav-links">
+      <a href="systemes-reseaux.html#projets">← Projets</a>
+      <a href="CV_Pierre-Francois_Ceccaldi_BTS_SIO.pdf">CV</a>
+      <a href="systemes-reseaux.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-proj">
+  <div class="breadcrumb"><a href="systemes-reseaux.html#projets">Projets</a> / Installation Windows VM</div>
+  <div class="hero-tag">Projet 03 — Systèmes</div>
+  <h1>Installation de <em>Windows 10</em><br>en machine virtuelle.</h1>
+  <p class="hero-desc">Procédure complète d'installation et de configuration d'un poste Windows dans VirtualBox — de la création de la VM à la validation réseau, avec un incident réel rencontré et résolu.</p>
+  <div class="tags">
+    <span class="tag">VirtualBox</span>
+    <span class="tag">Windows 10</span>
+    <span class="tag">ISO Microsoft</span>
+    <span class="tag">BIOS / SVM</span>
+    <span class="tag">Configuration réseau</span>
+  </div>
+</header>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Contexte</div>
+  <div class="highlight-bar">
+    <p><strong>Objectif :</strong> installer et configurer un poste Windows 10 dans VirtualBox, en documentant chaque étape comme une procédure technique reproductible — le cœur du métier de support : déployer, configurer, valider.</p>
+  </div>
+  <p>La virtualisation permet de créer des environnements de test sans risque pour la machine hôte. C'est un outil fondamental en BTS SIO SISR pour tester des configurations réseau, des déploiements et des procédures de maintenance.</p>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Prérequis</div>
+  <h2>Environnement et ressources.</h2>
+  <table class="specs-table">
+    <thead><tr><th>Élément</th><th>Requis</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Logiciel</td><td>VirtualBox 7.x</td><td>Téléchargement gratuit sur virtualbox.org</td></tr>
+      <tr><td>ISO Windows 10</td><td>Fichier .iso officiel</td><td>Gratuit sur microsoft.com (outil de création de support)</td></tr>
+      <tr><td>RAM disponible</td><td>4 Go minimum</td><td>2 Go alloués à la VM, 2 Go conservés pour l'hôte</td></tr>
+      <tr><td>Espace disque</td><td>30 Go libres</td><td>Disque virtuel dynamique de 25 Go maximum</td></tr>
+      <tr><td>Processeur</td><td>VT-x / AMD-V</td><td>Virtualisation à activer dans le BIOS — voir l'incident rencontré ci-dessous</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Procédure</div>
+  <h2>Installation étape par étape.</h2>
+
+  <div class="procedure">
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">01</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Création de la machine virtuelle</h3>
+        <p>Dans VirtualBox, cliquer sur <strong>Nouvelle</strong> et renseigner les paramètres :</p>
+        <ul>
+          <li>Nom : <strong>WinTest01</strong></li>
+          <li>Type : Microsoft Windows — Version : <strong>Windows 10 (64-bit)</strong></li>
+          <li>RAM allouée : <strong>2048 Mo</strong></li>
+          <li>Disque dur virtuel : Créer — VDI — Dynamique — <strong>25 Go</strong></li>
+        </ul>
+        <figure class="capture">
+          <img src="images-portfolio/etape1.png" alt="Vue Détails de la VM WinTest01 après création : Windows 10 64-bit, 2048 Mo de RAM, disque VDI de 25 Go">
+          <figcaption>etape1.png — Vue Détails de la VM après création</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">02</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Montage de l'ISO Windows</h3>
+        <p>Avant de démarrer, attacher l'ISO au lecteur optique virtuel :</p>
+        <ul>
+          <li>Sélectionner la VM → <strong>Configuration → Stockage</strong></li>
+          <li>Cliquer sur le lecteur CD vide (Port SATA 1)</li>
+          <li>Icône disque → <strong>Choisir un fichier de disque</strong> → sélectionner le .iso</li>
+        </ul>
+        <div class="warn-box">
+          <span class="ico">⚠️</span>
+          <p>Vérifier que l'ISO est bien attaché avant de démarrer — sinon la VM démarre sur un disque vide et affiche une erreur de boot. Sur la vue Détails, le Port SATA 1 doit afficher le nom du fichier .iso et non « Vide ».</p>
+        </div>
+        <figure class="capture">
+          <img src="images-portfolio/etape2.png" alt="Vue Détails : ISO Windows.iso attaché au port SATA 1 et mode réseau Accès par pont actif">
+          <figcaption>etape2.png — ISO attaché (Port SATA 1) et mode pont actif</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">03</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Configuration réseau de la VM</h3>
+        <p>Choisir le mode réseau selon le besoin :</p>
+        <ul>
+          <li><strong>Accès par pont (Bridge)</strong> : la VM obtient une IP du même réseau que l'hôte — idéal pour tester la connectivité réelle</li>
+          <li><strong>NAT</strong> : la VM accède à internet via l'hôte — simple mais isolée du réseau local</li>
+          <li><strong>Réseau interne</strong> : VMs isolées entre elles — pour des labos sans internet</li>
+        </ul>
+        <div class="tip-box">
+          <span class="ico">💡</span>
+          <p><strong>Choix pour ce projet :</strong> Accès par pont sur la carte Wi-Fi de l'hôte (Intel Wi-Fi 6 AX200), pour que la VM reçoive une vraie IP du DHCP de la box et soit visible sur le réseau local. Vérification à l'étape 06.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">04</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Installation de Windows 10</h3>
+        <p>Démarrer la VM — l'assistant d'installation se lance :</p>
+        <ul>
+          <li>Langue et format horaire → <strong>Suivant → Installer maintenant</strong></li>
+          <li>Clé de produit → <strong>Je n'ai pas de clé de produit</strong> (mode évaluation)</li>
+          <li>Édition : <strong>Windows 10 Pro</strong></li>
+          <li>Type d'installation : <strong>Personnalisé</strong> (installation propre)</li>
+          <li>Sélectionner le disque virtuel de 25 Go → <strong>Suivant</strong> → copie des fichiers (10-15 min)</li>
+        </ul>
+        <figure class="capture">
+          <img src="images-portfolio/etape4.png" alt="Sélection du disque virtuel de 25 Go dans l'assistant d'installation Windows 10">
+          <figcaption>etape4.png — Sélection du disque virtuel lors de l'installation</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">05</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Configuration initiale (OOBE)</h3>
+        <p>Au premier démarrage, Windows lance l'assistant de configuration :</p>
+        <ul>
+          <li>Région : <strong>France</strong> — Clavier : <strong>Français</strong></li>
+          <li>Compte : <strong>Compte hors connexion</strong> (pas de compte Microsoft requis)</li>
+          <li>Utilisateur : ex. <strong>Technicien</strong> + mot de passe</li>
+          <li>Paramètres de confidentialité : tout désactiver pour une VM de test</li>
+        </ul>
+        <figure class="capture">
+          <img src="images-portfolio/etape5.png" alt="Bureau Windows 10 après le premier démarrage de la machine virtuelle">
+          <figcaption>etape5.png — Bureau Windows 10 au premier démarrage</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="proc-step">
+      <div class="proc-num-col"><div class="proc-num">06</div><div class="proc-line"></div></div>
+      <div class="proc-content">
+        <h3>Validation réseau depuis la VM</h3>
+        <p>Ouvrir cmd dans la VM et dérouler les tests de connectivité :</p>
+        <ul>
+          <li><code class="inline">ipconfig</code> → la VM a bien reçu une IP du DHCP</li>
+          <li><code class="inline">ping 192.168.1.1</code> → la passerelle répond</li>
+          <li><code class="inline">ping 8.8.8.8</code> → l'accès internet fonctionne</li>
+          <li><code class="inline">ping [IP de l'hôte]</code> → VM et hôte communiquent</li>
+        </ul>
+        <div class="tip-box">
+          <span class="ico">💡</span>
+          <p>Si la VM et l'hôte se pingent mutuellement, le mode <strong>pont</strong> fonctionne : la VM est intégrée au réseau local comme un vrai poste. Ce test fait le lien avec le projet 01.</p>
+        </div>
+        <figure class="capture">
+          <img src="images-portfolio/etape6.png" alt="Résultat d'ipconfig et des tests ping exécutés depuis la machine virtuelle">
+          <figcaption>etape6.png — ipconfig et tests de connectivité depuis la VM</figcaption>
+        </figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Incident rencontré</div>
+  <h2>Erreur au premier démarrage de la VM.</h2>
+  <p>Au lancement de la machine virtuelle, VirtualBox a refusé de démarrer avec l'erreur suivante :</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-title">VirtualBox — Erreur au démarrage de WinTest01</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-white">VM Name: WinTest01</span><br><br>
+      <span class="t-err">Not in a hypervisor partition (HVP=0) (VERR_NEM_NOT_AVAILABLE).</span><br>
+      <span class="t-err">AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED).</span><br><br>
+      <span class="t-comment">Result Code : E_FAIL (0x80004005)</span><br>
+      <span class="t-comment">Component   : ConsoleWrap</span><br>
+      <span class="t-comment">Interface   : IConsole</span>
+    </div>
+  </div>
+
+  <p>Résolution en appliquant la même méthode de diagnostic que sur le terrain :</p>
+
+  <div class="incident-steps">
+    <div class="inc-step">
+      <div class="inc-label">01 — Observer</div>
+      <h4>Lire le message</h4>
+      <p>L'erreur <strong style="color:var(--text)">VERR_SVM_DISABLED</strong> indique explicitement que AMD-V est désactivé dans le BIOS ou bloqué par l'OS hôte.</p>
+    </div>
+    <div class="inc-step">
+      <div class="inc-label">02 — Diagnostiquer</div>
+      <h4>Identifier la cause</h4>
+      <p>AMD-V (appelé <strong style="color:var(--text)">SVM</strong> chez AMD) est la virtualisation matérielle du processeur. Désactivée par défaut sur de nombreuses cartes mères.</p>
+    </div>
+    <div class="inc-step">
+      <div class="inc-label">03 — Corriger</div>
+      <h4>Activer le SVM</h4>
+      <p>Redémarrage → BIOS/UEFI → option <strong style="color:var(--text)">SVM Mode</strong> (section CPU) passée sur Enabled → sauvegarde et redémarrage.</p>
+    </div>
+    <div class="inc-step">
+      <div class="inc-label">04 — Documenter</div>
+      <h4>Tracer l'incident</h4>
+      <p>Erreur, cause et solution consignées dans cette page — la VM démarre normalement après correction.</p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <span class="ico">💡</span>
+    <p><strong>Ce que cet incident illustre :</strong> un message d'erreur bien lu contient souvent sa propre solution. La méthode observer → diagnostiquer → corriger → documenter, issue de la maintenance industrielle, s'applique directement au support informatique.</p>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Bilan</div>
+  <div class="conclusion">
+    <h3>Ce que ce projet m'a appris</h3>
+    <ul>
+      <li>Créer et configurer une machine virtuelle dans VirtualBox</li>
+      <li>Diagnostiquer et résoudre un blocage de virtualisation matérielle (SVM/AMD-V dans le BIOS)</li>
+      <li>Installer Windows 10 depuis une ISO officielle Microsoft</li>
+      <li>Comprendre les modes réseau de VirtualBox (NAT, pont, réseau interne)</li>
+      <li>Valider le fonctionnement réseau d'un poste après installation</li>
+      <li>Rédiger une procédure technique reproductible, incident compris</li>
+    </ul>
+  </div>
+</section>
+
+<div class="back-wrap">
+  <a class="btn-ghost" href="systemes-reseaux.html#projets">← Retour aux projets</a>
+</div>
+
+<footer>© 2026 Pierre-François Ceccaldi — Portfolio BTS SIO SISR</footer>
+
+<script data-goatcounter="https://ceccaldip.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>

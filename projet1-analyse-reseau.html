@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Projet réseau — Analyse de la configuration d'un poste Windows : ipconfig, ping, tracert. Portfolio BTS SIO SISR de Pierre-François Ceccaldi." />
+  <title>Analyse réseau Windows — PF.Ceccaldi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #060810;
+      --bg-2: #0d1117;
+      --bg-3: #111823;
+      --accent: #00e5ff;
+      --accent-2: #7b5cfa;
+      --text: #f0f4ff;
+      --muted: #7a8ba8;
+      --border: rgba(255,255,255,0.07);
+      --mono: 'Space Mono', monospace;
+      --sans: 'Sora', 'Segoe UI', Arial, sans-serif;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ::selection { background: rgba(0, 229, 255, 0.28); }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(6, 8, 16, 0.86); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1120px; margin: auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+    .logo { font-family: var(--mono); font-size: 0.95rem; color: var(--accent); letter-spacing: 0.02em; white-space: nowrap; }
+    .logo span { color: var(--muted); }
+    .nav-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-links a { font-size: 0.86rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s ease; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero-proj { max-width: 1120px; margin: auto; padding: 5rem 2rem 3rem; }
+    .breadcrumb { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 1.6rem; }
+    .breadcrumb a { color: var(--accent); }
+    .hero-tag { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.8rem; color: var(--accent); border: 1px solid rgba(0, 229, 255, 0.3); background: rgba(0, 229, 255, 0.06); padding: 0.4rem 0.9rem; border-radius: 4px; margin-bottom: 1.6rem; }
+    .hero-tag::before { content: '//'; opacity: 0.5; }
+    h1 { font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1.4rem; }
+    h1 em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 620px; margin-bottom: 2rem; font-weight: 300; line-height: 1.8; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag { font-family: var(--mono); font-size: 0.75rem; background: rgba(0, 229, 255, 0.07); border: 1px solid rgba(0, 229, 255, 0.2); color: var(--accent); padding: 0.25rem 0.7rem; border-radius: 4px; }
+
+    .section { max-width: 1120px; margin: auto; padding: 3.5rem 2rem; }
+    .label { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.6rem; }
+    h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.6rem; }
+    .section p { color: var(--muted); line-height: 1.9; font-weight: 300; margin-bottom: 1rem; }
+    .section p strong { color: var(--text); font-weight: 600; }
+    .sep { max-width: 1120px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+    code.inline { font-family: var(--mono); font-size: 0.85em; background: rgba(0, 229, 255, 0.07); border: 1px solid rgba(0, 229, 255, 0.2); color: var(--accent); padding: 0.1rem 0.45rem; border-radius: 4px; }
+
+    .highlight-bar { background: linear-gradient(135deg, rgba(0, 229, 255, 0.06), rgba(123, 92, 250, 0.06)); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 10px; padding: 1.4rem 1.8rem; display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .highlight-bar::before { content: '→'; font-size: 1.4rem; color: var(--accent); flex-shrink: 0; line-height: 1.4; }
+    .highlight-bar p { color: var(--text); font-weight: 600; line-height: 1.6; margin: 0; }
+    .highlight-bar p strong { color: var(--accent); }
+
+    .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .step { background: rgba(13, 17, 23, 0.92); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; transition: border-color 0.2s ease, transform 0.2s ease; }
+    .step:hover { border-color: rgba(0, 229, 255, 0.3); transform: translateY(-3px); }
+    .step::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); opacity: 0; transition: opacity 0.2s ease; }
+    .step:hover::after { opacity: 1; }
+    .step-num { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); margin-bottom: 1rem; letter-spacing: 0.05em; }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .step p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin: 0; }
+
+    .terminal { background: rgba(13, 17, 23, 0.92); border: 1px solid rgba(0, 229, 255, 0.18); border-radius: 12px; overflow: hidden; box-shadow: 0 0 60px rgba(0, 229, 255, 0.07); margin: 1.6rem 0; }
+    .terminal-bar { display: flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.2rem; background: rgba(255,255,255,0.04); border-bottom: 1px solid var(--border); }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
+    .terminal-title { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); margin-left: 0.4rem; }
+    .terminal-body { padding: 1.4rem 1.6rem; font-family: var(--mono); font-size: 0.8rem; line-height: 2; overflow-x: auto; }
+    .t-comment { color: #3c5071; }
+    .t-key { color: var(--accent-2); }
+    .t-val { color: var(--accent); }
+    .t-str { color: #7ec89a; }
+    .t-prompt { color: var(--accent-2); }
+    .t-white { color: var(--text); }
+
+    .capture-note { background: rgba(13, 17, 23, 0.6); border: 1px dashed rgba(0, 229, 255, 0.25); border-radius: 12px; padding: 1.6rem; text-align: center; margin: 1.4rem 0; }
+    .capture-note strong { color: var(--accent); display: block; margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .capture-note p { color: var(--muted); font-size: 0.85rem; margin: 0; font-weight: 300; }
+
+    .analyse-table { width: 100%; border-collapse: collapse; margin: 1.4rem 0; background: rgba(13, 17, 23, 0.92); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .analyse-table th { font-family: var(--mono); color: var(--accent); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.9rem 1.1rem; text-align: left; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+    .analyse-table td { padding: 0.8rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--muted); vertical-align: top; font-weight: 300; }
+    .analyse-table tr:last-child td { border-bottom: none; }
+    .analyse-table td:first-child { font-family: var(--mono); color: var(--accent-2); font-size: 0.8rem; }
+    .analyse-table td:nth-child(2) { font-family: var(--mono); color: var(--text); font-size: 0.8rem; }
+
+    .conclusion { background: rgba(13, 17, 23, 0.92); border: 1px solid rgba(0, 229, 255, 0.2); border-radius: 14px; padding: 1.8rem; }
+    .conclusion h3 { font-size: 1.05rem; margin-bottom: 1rem; color: var(--accent); font-weight: 700; }
+    .conclusion ul { list-style: none; }
+    .conclusion ul li { font-size: 0.9rem; color: var(--muted); padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 0.6rem; font-weight: 300; }
+    .conclusion ul li:last-child { border-bottom: none; }
+    .conclusion ul li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; line-height: 1.9; }
+
+    .back-wrap { max-width: 1120px; margin: auto; padding: 0 2rem 4rem; }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; padding: 0.9rem 1.6rem; background: rgba(6, 8, 16, 0.34); border-radius: 6px; letter-spacing: 0.03em; transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease; }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.25); color: var(--text); transform: translateY(-2px); }
+
+    footer { text-align: center; padding: 2rem; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @media (max-width: 900px) {
+      .steps-row { grid-template-columns: 1fr 1fr; }
+      .nav-inner { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; gap: 1.1rem; }
+    }
+    @media (max-width: 560px) {
+      .steps-row { grid-template-columns: 1fr; }
+      .section { padding: 3rem 1.2rem; }
+      .hero-proj { padding: 4rem 1.2rem 2.5rem; }
+      .nav-inner { padding: 1rem 1.2rem; }
+      .terminal-body { font-size: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="systemes-reseaux.html">PF<span>.</span>Ceccaldi</a>
+    <div class="nav-links">
+      <a href="systemes-reseaux.html#projets">← Projets</a>
+      <a href="CV_Pierre-Francois_Ceccaldi_BTS_SIO.pdf">CV</a>
+      <a href="systemes-reseaux.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-proj">
+  <div class="breadcrumb"><a href="systemes-reseaux.html#projets">Projets</a> / Analyse réseau Windows</div>
+  <div class="hero-tag">Projet 01 — Réseau</div>
+  <h1>Analyse du réseau<br>d'un poste <em>Windows</em>.</h1>
+  <p class="hero-desc">Identification de la configuration réseau d'une machine, tests de connectivité et analyse du chemin réseau — avec la même méthode de diagnostic que sur le terrain.</p>
+  <div class="tags">
+    <span class="tag">Windows 10/11</span>
+    <span class="tag">ipconfig</span>
+    <span class="tag">ping</span>
+    <span class="tag">tracert</span>
+    <span class="tag">nslookup</span>
+  </div>
+</header>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Contexte</div>
+  <div class="highlight-bar">
+    <p><strong>Objectif :</strong> comprendre et documenter la configuration réseau d'un poste Windows avec les commandes natives. Identifier l'IP, la passerelle, le DNS, tester la connectivité et analyser le chemin réseau.</p>
+  </div>
+  <p>Ce projet illustre une démarche de <strong>diagnostic réseau de premier niveau</strong> — ce que ferait un technicien support face à un problème de connectivité. Toutes les commandes sont exécutées dans l'invite de commandes Windows (cmd).</p>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Démarche</div>
+  <h2>Méthode en 4 étapes.</h2>
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-num">ÉTAPE_01</div>
+      <h3>Identifier</h3>
+      <p>Relever la configuration IP du poste avec ipconfig /all.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">ÉTAPE_02</div>
+      <h3>Tester local</h3>
+      <p>Vérifier la connectivité vers le loopback et la passerelle.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">ÉTAPE_03</div>
+      <h3>Tester externe</h3>
+      <p>Ping vers internet et résolution DNS.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">ÉTAPE_04</div>
+      <h3>Analyser</h3>
+      <p>Tracert pour visualiser le chemin réseau complet.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Étape 01 — ipconfig /all</div>
+  <h2>Identification de la configuration IP.</h2>
+  <p>La commande <code class="inline">ipconfig /all</code> affiche l'ensemble des informations réseau de la machine : adresse IP, masque, passerelle, serveurs DNS et adresse MAC.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-title">cmd — ipconfig /all</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-prompt">C:\Users\Pierre-François&gt;</span> <span class="t-white">ipconfig /all</span><br><br>
+      <span class="t-key">Carte réseau Ethernet :</span><br><br>
+      <span class="t-comment">   Description . . . . . . . . . . . :</span> <span class="t-str">Realtek PCIe GbE Family Controller</span><br>
+      <span class="t-comment">   Adresse physique. . . . . . . . . :</span> <span class="t-val">A4-BB-6D-xx-xx-xx</span>  <span class="t-comment">← adresse MAC (identifiant unique)</span><br>
+      <span class="t-comment">   DHCP activé . . . . . . . . . . . :</span> <span class="t-val">Oui</span>  <span class="t-comment">← IP attribuée automatiquement par la box</span><br>
+      <span class="t-comment">   Adresse IPv4. . . . . . . . . . . :</span> <span class="t-val">192.168.1.42</span>  <span class="t-comment">← adresse du poste sur le réseau local</span><br>
+      <span class="t-comment">   Masque de sous-réseau . . . . . . :</span> <span class="t-val">255.255.255.0</span>  <span class="t-comment">← /24 = 254 hôtes possibles</span><br>
+      <span class="t-comment">   Passerelle par défaut . . . . . . :</span> <span class="t-val">192.168.1.1</span>  <span class="t-comment">← adresse de la box / routeur</span><br>
+      <span class="t-comment">   Serveur(s) DNS. . . . . . . . . . :</span> <span class="t-val">192.168.1.1</span><br>
+      <span class="t-comment">                                       </span> <span class="t-val">8.8.8.8</span>  <span class="t-comment">← DNS Google en secours</span>
+    </div>
+  </div>
+
+
+  <table class="analyse-table">
+    <thead><tr><th>Paramètre</th><th>Valeur</th><th>Signification</th></tr></thead>
+    <tbody>
+      <tr><td>IPv4</td><td>192.168.1.42</td><td>Adresse du poste sur le réseau local. 192.168.x.x → plage privée</td></tr>
+      <tr><td>Masque</td><td>255.255.255.0</td><td>Notation /24 : 3 octets pour le réseau, 1 pour l'hôte</td></tr>
+      <tr><td>Passerelle</td><td>192.168.1.1</td><td>Adresse de la box — point de sortie vers internet</td></tr>
+      <tr><td>DHCP</td><td>Oui</td><td>IP attribuée automatiquement par le serveur DHCP de la box</td></tr>
+      <tr><td>DNS</td><td>192.168.1.1 / 8.8.8.8</td><td>Serveurs qui traduisent les noms de domaine en adresses IP</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Étape 02 — ping</div>
+  <h2>Tests de connectivité progressifs.</h2>
+  <p>Le ping envoie des paquets vers une adresse et mesure si elle répond. La logique de diagnostic : tester <strong>du plus proche au plus lointain</strong> pour localiser précisément où se situe un éventuel problème.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-title">cmd — tests ping</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-comment">— Test 1 : loopback (la machine elle-même) —</span><br>
+      <span class="t-prompt">C:\&gt;</span> <span class="t-white">ping 127.0.0.1</span><br>
+      <span class="t-str">Réponse de 127.0.0.1 : octets=32 temps&lt;1ms TTL=128</span><br>
+      <span class="t-comment">→ La pile TCP/IP fonctionne sur ce poste.</span><br><br>
+      <span class="t-comment">— Test 2 : passerelle (la box) —</span><br>
+      <span class="t-prompt">C:\&gt;</span> <span class="t-white">ping 192.168.1.1</span><br>
+      <span class="t-str">Réponse de 192.168.1.1 : octets=32 temps=2ms TTL=64</span><br>
+      <span class="t-comment">→ Le réseau local fonctionne.</span><br><br>
+      <span class="t-comment">— Test 3 : internet (IP directe, sans DNS) —</span><br>
+      <span class="t-prompt">C:\&gt;</span> <span class="t-white">ping 8.8.8.8</span><br>
+      <span class="t-str">Réponse de 8.8.8.8 : octets=32 temps=14ms TTL=118</span><br>
+      <span class="t-comment">→ L'accès internet fonctionne.</span><br><br>
+      <span class="t-comment">— Test 4 : résolution DNS —</span><br>
+      <span class="t-prompt">C:\&gt;</span> <span class="t-white">ping google.com</span><br>
+      <span class="t-str">Réponse de 142.250.75.206 : octets=32 temps=12ms TTL=118</span><br>
+      <span class="t-comment">→ Le DNS traduit bien les noms de domaine en IP.</span>
+    </div>
+  </div>
+
+  <p><strong>Intérêt de cette progression :</strong> si le test 2 échoue, le problème est local (câble, Wi-Fi, carte réseau). Si le test 3 échoue mais pas le 2, le problème vient de la connexion internet. Si seul le test 4 échoue, c'est un problème DNS. Chaque étape isole une couche du réseau.</p>
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Étape 03 — tracert</div>
+  <h2>Analyse du chemin réseau.</h2>
+  <p>La commande <code class="inline">tracert</code> affiche chaque routeur traversé entre le poste et la destination. Elle permet d'identifier précisément où une connexion se dégrade ou se bloque.</p>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <span class="terminal-title">cmd — tracert google.com</span>
+    </div>
+    <div class="terminal-body">
+      <span class="t-prompt">C:\&gt;</span> <span class="t-white">tracert google.com</span><br><br>
+      <span class="t-comment">Détermination de l'itinéraire vers google.com [142.250.75.206]</span><br><br>
+      <span class="t-val">  1     1 ms    1 ms    1 ms</span>   <span class="t-white">192.168.1.1</span>      <span class="t-comment">← box / routeur local</span><br>
+      <span class="t-val">  2     8 ms    7 ms    8 ms</span>   <span class="t-white">10.x.x.1</span>         <span class="t-comment">← premier routeur du FAI</span><br>
+      <span class="t-val">  3    11 ms   10 ms   11 ms</span>   <span class="t-white">81.x.x.x</span>         <span class="t-comment">← backbone FAI</span><br>
+      <span class="t-val">  4    12 ms   12 ms   11 ms</span>   <span class="t-white">74.125.x.x</span>       <span class="t-comment">← infrastructure Google</span><br>
+      <span class="t-val">  5    13 ms   12 ms   13 ms</span>   <span class="t-white">142.250.75.206</span>   <span class="t-comment">← destination atteinte</span><br><br>
+      <span class="t-str">Itinéraire déterminé.</span>
+    </div>
+  </div>
+
+</section>
+
+<div class="sep"></div>
+
+<section class="section">
+  <div class="label">Bilan</div>
+  <div class="conclusion">
+    <h3>Ce que ce projet m'a appris</h3>
+    <ul>
+      <li>Lire et interpréter une configuration réseau complète (IP, masque, passerelle, DNS)</li>
+      <li>Distinguer un problème local d'un problème internet grâce aux tests progressifs</li>
+      <li>Comprendre le rôle du DHCP, du DNS et de la passerelle</li>
+      <li>Utiliser tracert pour localiser un point de blocage sur le chemin réseau</li>
+      <li>Documenter une analyse technique de façon structurée et reproductible</li>
+    </ul>
+  </div>
+</section>
+
+<div class="back-wrap">
+  <a class="btn-ghost" href="systemes-reseaux.html#projets">← Retour aux projets</a>
+</div>
+
+<footer>© 2026 Pierre-François Ceccaldi — Portfolio BTS SIO SISR</footer>
+
+<script data-goatcounter="https://ceccaldip.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+</body>
+</html>

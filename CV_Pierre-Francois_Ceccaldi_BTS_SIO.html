@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Pierre-François Ceccaldi</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060810;
+    --bg-2: #0d1117;
+    --bg-3: #111823;
+    --accent: #00e5ff;
+    --accent-2: #7b5cfa;
+    --text: #f0f4ff;
+    --muted: #7a8ba8;
+    --border: rgba(255,255,255,0.07);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Sora', 'Segoe UI', Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #02030a; font-family: var(--sans); font-size: 13px; line-height: 1.5; color: var(--text); }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: var(--bg);
+    display: grid;
+    grid-template-columns: 72mm 1fr;
+    box-shadow: 0 0 60px rgba(0, 229, 255, 0.06);
+  }
+
+  /* SIDEBAR */
+  .sidebar { background: var(--bg-2); padding: 26px 18px; border-right: 1px solid rgba(0, 229, 255, 0.18); }
+  .avatar {
+    width: 62px; height: 62px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: 18px; font-weight: 700; color: #02030a;
+    margin-bottom: 14px;
+  }
+  .name { font-size: 17px; font-weight: 800; line-height: 1.2; margin-bottom: 4px; letter-spacing: -0.02em; }
+  .name em { font-style: normal; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .title { font-family: var(--mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .badge-reconversion {
+    display: inline-block; font-family: var(--mono); font-size: 9px; font-weight: 700;
+    color: var(--accent); border: 1px solid rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.07);
+    padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 18px;
+  }
+  .badge-reconversion::before { content: '// '; opacity: 0.5; }
+  .sidebar-section { margin-bottom: 18px; }
+  .sidebar-title {
+    font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.14em;
+    border-bottom: 1px solid var(--border); padding-bottom: 5px; margin-bottom: 9px;
+  }
+  .contact-item { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 6px; font-size: 10.5px; color: #c4cede; }
+  .contact-icon { color: var(--accent); width: 13px; flex-shrink: 0; font-size: 10px; margin-top: 1px; }
+  .contact-item a { color: var(--accent); text-decoration: none; font-size: 10px; word-break: break-all; }
+  .skill-group { margin-bottom: 4px; }
+  .skill-tag {
+    display: inline-block; font-family: var(--mono); font-size: 9.5px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: #c4cede;
+    padding: 3px 7px; border-radius: 4px; margin: 2px 2px 2px 0;
+  }
+  .skill-tag.highlight { background: rgba(0, 229, 255, 0.07); border-color: rgba(0, 229, 255, 0.3); color: var(--accent); }
+  .tool-item { font-size: 10.5px; color: #c4cede; padding: 2px 0; }
+  .tool-item::before { content: "▸ "; color: var(--accent); font-size: 8px; }
+
+  /* MAIN */
+  .main { background: var(--bg); padding: 26px 24px; }
+  .section { margin-bottom: 20px; }
+  .section-title {
+    font-family: var(--mono); font-size: 9px; font-weight: 700; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::before { content: '//'; opacity: 0.5; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
+
+  .profil-box {
+    background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(123, 92, 250, 0.05));
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    padding: 11px 15px; border-radius: 8px;
+    font-size: 11.5px; color: #c4cede; line-height: 1.75; font-weight: 300;
+  }
+  .profil-box strong { color: var(--accent); font-weight: 600; }
+
+  .formation-item, .exp-item { display: grid; grid-template-columns: 76px 1fr; gap: 10px; align-items: start; }
+  .formation-item { margin-bottom: 8px; }
+  .exp-item { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .date { font-family: var(--mono); font-size: 9.5px; color: var(--accent); font-weight: 700; text-align: right; padding-top: 2px; line-height: 1.5; }
+
+  .formation-diplome { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .formation-diplome.current { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .formation-ecole { font-size: 10px; color: var(--muted); }
+  .badge-encours {
+    display: inline-block; font-family: var(--mono); font-size: 8px; font-weight: 700;
+    color: var(--accent); border: 1px solid rgba(0, 229, 255, 0.35); background: rgba(0, 229, 255, 0.07);
+    padding: 1px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;
+    margin-left: 6px; vertical-align: middle; -webkit-text-fill-color: var(--accent);
+  }
+
+  .exp-role { font-size: 12.5px; font-weight: 700; color: var(--text); margin-bottom: 1px; }
+  .exp-company { font-family: var(--mono); font-size: 9px; color: var(--muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .exp-bullets { list-style: none; }
+  .exp-bullets li { font-size: 10.5px; color: #aab6c8; padding: 1.5px 0 1.5px 12px; position: relative; font-weight: 300; }
+  .exp-bullets li::before { content: "▸"; color: var(--accent); position: absolute; left: 0; font-size: 8px; top: 4px; }
+  .exp-bullets li em { color: var(--text); font-style: normal; font-weight: 600; }
+
+  @media print {
+    body { background: white; margin: 0; }
+    .page { margin: 0; box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+    <div class="avatar">PFC</div>
+    <div class="name">Pierre-François<br><em>Ceccaldi</em></div>
+    <div class="title">Alternant BTS SIO — SISR</div>
+    <div class="badge-reconversion">Reconversion IT</div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Contact</div>
+      <div class="contact-item"><span class="contact-icon">✆</span><span>06 70 16 78 79</span></div>
+      <div class="contact-item"><span class="contact-icon">✉</span><span style="word-break:break-all">ceccaldi.pierre-francois@hotmail.com</span></div>
+      <div class="contact-item"><span class="contact-icon">⊕</span><a href="https://pceccaldi.github.io/portfolio/systemes-reseaux.html">Portfolio en ligne</a></div>
+      <div class="contact-item"><span class="contact-icon">in</span><a href="https://linkedin.com/in/pierre-francois-ceccaldi">LinkedIn</a></div>
+      <div class="contact-item"><span class="contact-icon">⊙</span><span>Permis B · Véhicule perso</span></div>
+      <div class="contact-item"><span class="contact-icon">◎</span><span>Disponible immédiatement · Mobile</span></div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Support informatique</div>
+      <div class="skill-group">
+        <span class="skill-tag highlight">Diagnostic matériel</span>
+        <span class="skill-tag highlight">Dépannage Windows</span>
+        <span class="skill-tag highlight">Assistance utilisateur</span>
+        <span class="skill-tag">Config. postes</span>
+        <span class="skill-tag">Tests connectivité</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Réseaux & systèmes</div>
+      <div class="skill-group">
+        <span class="skill-tag highlight">IP / DNS / DHCP</span>
+        <span class="skill-tag highlight">Ethernet / Wi-Fi</span>
+        <span class="skill-tag">Partage réseau</span>
+        <span class="skill-tag">Sécurité de base</span>
+        <span class="skill-tag">VirtualBox</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Méthode & organisation</div>
+      <div class="skill-group">
+        <span class="skill-tag highlight">Diagnostic structuré</span>
+        <span class="skill-tag highlight">Respect des procédures</span>
+        <span class="skill-tag">Documentation technique</span>
+        <span class="skill-tag">Priorisation</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Outils numériques</div>
+      <div class="tool-item">GitHub / GitHub Pages</div>
+      <div class="tool-item">draw.io</div>
+      <div class="tool-item">Excel</div>
+      <div class="tool-item">Notion / Trello</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="section">
+      <div class="section-title">Profil</div>
+      <div class="profil-box">
+        Technicien de maintenance industrielle depuis 5 ans, je me reconvertis vers le <strong>support informatique et les systèmes réseaux</strong>. Je rejoins le <strong>BTS SIO option SISR à l'E2SE Caen en septembre 2026</strong> en alternance.<br><br>
+        Mon expérience terrain m'a formé au <strong>diagnostic méthodique</strong>, au respect des procédures et à l'intervention sur des environnements techniques complexes — des réflexes directement transférables au support systèmes. Mes premiers projets IT sont documentés sur mon <strong>portfolio en ligne</strong>.
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Formation</div>
+      <div class="formation-item">
+        <div class="date">2026 → 2028</div>
+        <div>
+          <div class="formation-diplome current">BTS SIO option SISR<span class="badge-encours">Rentrée sept. 2026</span></div>
+          <div class="formation-ecole">E2SE Caen — en alternance</div>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="date">2023 → 2024</div>
+        <div>
+          <div class="formation-diplome">Bachelor Maintenance Avancée</div>
+          <div class="formation-ecole">UIMM Vire</div>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="date">2020 → 2022</div>
+        <div>
+          <div class="formation-diplome">BTS Maintenance des systèmes</div>
+          <div class="formation-ecole">UIMM Quéven</div>
+        </div>
+      </div>
+      <div class="formation-item">
+        <div class="date">2014</div>
+        <div>
+          <div class="formation-diplome">Bac STI2D</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Expérience professionnelle</div>
+
+      <div class="exp-item">
+        <div class="date">2025<br>→ 2026</div>
+        <div>
+          <div class="exp-role">Technicien de maintenance</div>
+          <div class="exp-company">Les Celliers Associés</div>
+          <ul class="exp-bullets">
+            <li>Organisation et planification des interventions sur <em>équipements industriels</em></li>
+            <li>Diagnostic de dysfonctionnements : recherche de cause, <em>procédure de résolution structurée</em></li>
+            <li>Documentation des interventions et suivi des actions correctives</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="date">2024<br>→ 2025</div>
+        <div>
+          <div class="exp-role">Technicien de maintenance</div>
+          <div class="exp-company">AVF</div>
+          <ul class="exp-bullets">
+            <li>Suivi d'équipements techniques en environnement <em>multi-sites</em></li>
+            <li>Priorisation des interventions selon criticité — <em>méthode applicable au ticketing IT</em></li>
+            <li>Organisation autonome du planning d'interventions</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="date">2023<br>→ 2024</div>
+        <div>
+          <div class="exp-role">Apprenti technicien</div>
+          <div class="exp-company">Degrenne</div>
+          <ul class="exp-bullets">
+            <li>Maintenance préventive et curative sur <em>ligne de production</em></li>
+            <li>Rédaction de rapports d'intervention, <em>traçabilité des actions</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="date">2020<br>→ 2022</div>
+        <div>
+          <div class="exp-role">Apprenti technicien</div>
+          <div class="exp-company">Geval</div>
+          <ul class="exp-bullets">
+            <li>Formation en alternance : maintenance corrective et préventive</li>
+            <li>Développement du <em>sens du diagnostic et de la rigueur procédurale</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
